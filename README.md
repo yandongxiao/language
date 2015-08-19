@@ -1,8 +1,13 @@
-This project is used for learning languanges and tools
+Introduction
+=====
+    This project is used for learning languanges and tools. <br />
 
-each branch contains one technique, such as
-    --> python
-    --> linux-c
-    --> windows-c
-    --> libevent
-    --> cmake
+
+Learning what
+=====
+### Each branch contains one technique, such as
+    python  
+    linux-c  
+    windows-c  
+    libevent  
+    cmake  
