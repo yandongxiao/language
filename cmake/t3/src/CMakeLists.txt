@@ -1,0 +1,16 @@
+SET(LIB_SRC hello.c)
+
+ADD_LIBRARY (hello SHARED ${LIB_SRC})
+
+ADD_LIBRARY (hello_static STATIC ${LIB_SRC})
+
+SET_TARGET_PROPERTIES (hello_static PROPERTIES OUTPUT_NAME "hello")
+
+INSTALL ( TARGETS hello hello_static
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        ) 
+
+INSTALL (FILES hello.h DESTINATION include)
+
+

@@ -1,0 +1,40 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+EXEC_PROGRAM(
+	ls 	${PROJECT_SOURCE_DIR}
+	ARGS	*.c
+	OUTPUT_VARIABLE  LS_OUTPUT
+	RETURN_VALUE	 LS_RETURN
+)
+
+IF(NOT LS_RETURN)	#NOT must be upper case
+	MESSAGE(STATUS ${LS_OUTPUT})
+ENDIF(NOT LS_RETURN)
+
+FILE(WRITE new.c
+"#include <stdio.h>
+int main()
+{
+	printf(\"helloworld\\n\");
+	return 0;
+}"
+)
+
+FILE(APPEND new.c
+	"//this is a test"
+)
+
+SET(SCRIPT ${CMAKE_BINARY_DIR}/script.sh)
+FILE(WRITE ${SCRIPT} "#! /bin/bash")
+ 
+AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR} SRC_LIST)
+FOREACH(it ${SRC_LIST})
+	EXEC_PROGRAM(
+		basename
+		ARGS ${it} .c
+		OUTPUT_VARIABLE	BN_OUTPUT
+	)
+	FILE(APPEND ${SCRIPT} "\n./${BN_OUTPUT}")
+	ADD_EXECUTABLE(${BN_OUTPUT} ${it})
+ENDFOREACH(it)
+

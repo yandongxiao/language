@@ -1,0 +1,10 @@
+CMAKE_MINIMUM_REQUIRED (VERSION 2.8)
+OPTION (CMAKE_BUILD_TYPE "the default build type is Debug" OFF)
+IF (CMAKE_BUILD_TYPE)
+    SET (CMAKE_BUILD_TYPE "Debug")
+    MESSAGE (debug)
+ELSE ()
+    SET (CMAKE_BUILD_TYPE "Release")
+    MESSAGE (release)
+ENDIF ()
+

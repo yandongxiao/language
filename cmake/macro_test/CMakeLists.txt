@@ -1,0 +1,12 @@
+PROJECT(hello)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+ENABLE_TESTING()
+MACRO(LIB_TEST	name)
+	ADD_EXECUTABLE(${name} ${name}.c)
+	TARGET_LINK_LIBRARIES(${name} pthread)
+	ADD_TEST(${name} ${name})
+ENDMACRO(LIB_TEST name)
+
+LIB_TEST(hello)
+LIB_TEST(world)

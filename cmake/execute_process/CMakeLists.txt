@@ -1,0 +1,13 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+
+add_executable (test test.c)
+
+#why execute three times
+#SET(CPACK_PACKAGE_FILE_NAME XXX)
+#SET(CPACK_OUTPUT_FILE_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/package)
+#SET(CPACK_GENERATOR "ZIP")  # because of you 
+#INCLUDE(CPack)
+
+#INSTALL(FILES CMakeLists.txt DESTINATION ${CMAKE_SOURCE_DIR}/package)
+INSTALL(FILES CMakeLists.txt DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/package)
+INSTALL(CODE "execute_process(COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/script/abc.sh)")

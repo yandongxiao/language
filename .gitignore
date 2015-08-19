@@ -1,0 +1,5 @@
+# for cmake
+build/
+*.cmake
+_CPack_Packages/
+CMakeCache

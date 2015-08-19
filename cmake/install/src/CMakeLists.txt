@@ -1,0 +1,9 @@
+ADD_LIBRARY(hello  STATIC hello.c)
+ADD_LIBRARY(shello SHARED hello.c)
+ADD_EXECUTABLE(world world.c)
+
+INSTALL(TARGETS  world shello hello
+	RUNTIME DESTINATION ${CMAKE_SOURCE_DIR}/package/bin
+	LIBRARY DESTINATION ${CMAKE_SOURCE_DIR}/package/lib
+    ARCHIVE DESTINATION ${CMAKE_SOURCE_DIR}/package/static
+	)

@@ -1,0 +1,4 @@
+1、如何让ADD_TEST的执行程序有所输出, 作为测试用例，最好使用assert来做.
+2、grep时能否选择某些文件进行输出。 grep -i "PROJECT" `find . -name CMakeLists.txt`   grep -i "PROJECT" `find . -name CMakeLists.*`
+3. CMAKE_MOUDLE_PATH的使用还不是很清楚.
+

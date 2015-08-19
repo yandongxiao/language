@@ -1,0 +1,16 @@
+
+if (WIN32) 
+  if (CMAKE_CL_64) 
+      set(ARCH_DIR "win32") 
+  else(CMAKE_CL_64) 
+      set(ARCH_DIR "win64") 
+  endif(CMAKE_CL_64)
+elseif (UNIX)
+   if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+	set(ARCH_DIR "linux64") 
+   else()
+	set(ARCH_DIR "linux32") 
+   endif()
+endif()
+
+MESSAGE(${ARCH_DIR})

@@ -1,0 +1,9 @@
+PROJECT (use)
+
+INCLUDE_DIRECTORIES(/usr/include/hello)
+#LINK_DIRECTORIES()
+
+
+ADD_EXECUTABLE(use main.c)
+
+TARGET_LINK_LIBRARIES(use libhello.a)
