@@ -1,0 +1,1 @@
+stdbuf -oL ./a.out

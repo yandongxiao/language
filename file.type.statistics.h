@@ -1,0 +1,7 @@
+
+#ifndef FILE_TYPE_STATISTICS
+#define FILE_TYPE_STATISTICS
+
+
+
+#endif /* FILE_TYPE_STATISTICS */

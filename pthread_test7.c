@@ -1,0 +1,2 @@
+/* pthread_sigmask example. */
+
