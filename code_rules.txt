@@ -1,0 +1,127 @@
+1.1 shell下执行脚本可二进制程序的区别.
+    UNIX并不区分二进制文件和脚本文件，所以它的处理过程如下：
+    a. shell --> fork 
+    b. --> execlp(程序, )  如果是二进制文件自然能执行成功。
+    c. --> execlp(shell, ) 创建一个与父进程同类型的shell子进程
+       或创建由脚本指定的解释器
+    注意：在二进制程序当中，调用system/popen时默认创建的shell类型
+    是sh. exec函数执行的程序，必须具有可执行权限，脚本亦是如此.
+
+1.2 子进程的参数
+    在调用exec函数时，至少需要指定argv[0]，即execl ("./prog", argv[0], NULL)
+    对于脚本文件来说：argv[0]是"./prog"， 接下来在shell脚本解释器行寻找参数，
+    最后才是execl传递的参数.
+
+1.3 利用信号机制+sigsuspend函数可以实现，进程间同步.
+
+2.1  func (int a [10]) 和 func2 (int (*a) [10]) 的区别?
+    a. func (int a[10]) == func (int a[]) == func (int *a)
+    b. func2函数中， a是一个指向拥有10个元素的数组的指针.
+    int b[20] 或 double c[10] 作为参数调用func2 ()会产生编译时错误.
+
+2.2 函数指针类型的声明 ？
+    两种方法: typedef void (*func_cb)(void) 和 typedef void func_cb (void)
+    使用方法: 前者func_cb cb = myfunc, 后者func_cb *cb = myfunc.
+    UNIX应用程序多采用第一种方法来进行类型定义。
+    注意：cb = myfnc 如果两者的类型不一致会产生warnning (包括返回值类型)
+    func() 与 func(void) 是不同类型的函数. 前者表示func参数个数是任意多个.
+
+2.3 指针比较. 返回的是两个指针之间元素的个数.
+    int nums [] = {1,2,3};
+    int *p1 = &nums[0];
+    /* 类似于offsetof宏，这里相当于指令lea addr p2. 即使访问nums[3]会产生内存错误也无妨.  */
+    int *p2 = &nums[3]; 
+    printf ("%d\n", p2-p1);
+    注意：void* 指针+1或-1操作类似于char*.
+
+3.1  从管道读写数据？
+    a. 如果写端关闭？ read返回值为0. 
+    b. 如果读端关闭？ write操作hau引发SIGPIPE信号产生，默认处理动作是终止该应用程序.
+
+3.2 非阻塞模式下从管道读写数据, 需要注意哪些？
+    a. 读端若是没有数据，直接失败返回（注意不是返回0, 0表示着写端关闭）, errno 设置为EAGAIN.
+    b. 如果频繁的向管道写数据，write操作会失败. 所以wirte操作返回并不表示wirte操作真正已经完成，
+    但是read操作确实真真切切的将数据放到缓冲区的.
+
+3.3 管道的特殊性？
+    a. write操作一次性写入小于PIPE_BUF的内容，可保证在管道内的连续性. 本机为4K
+    b. 通过ulimit -a可以查看管道最多为我们保存的数据量. 本机是8k. 写满了以后，阻塞的情况下wirte就会被阻塞.
+
+3.4 命名管道FIFO的打开？
+    a. 阻塞模式下， 无论单独打开的是FIFO的读端还是写端，都将会被阻塞。直到FIFO的另一端也被打开
+    b. 非阻塞模式下， 单独打开读端会成功，单独打开写端会失败！
+    成功打开以后，读写规则于匿名管道一致.
+    
+4.1 向strlen传递一个NULL会怎么办？
+    将它作为一个问题来分析，strlen的返回值类型是size_t，即无符号整形. 
+    strlen ("") 的返回值是0. 所以没有一个合适的数字给strlen，如果有的话那么也就是NULL了。
+    一个数字含有多种含义并非是LINUX的设计风格
+    所以strlen(NULL)的调用是错误的，LINUX下是core dump. 
+
+4.2 * 和 [] 优先级，[]具有更高的优先级.
+    #define STRING_LIST {"HOST", NULL}; char *list[] = STRING_LIST; sizeof (list) == 8
+    所以list是一个数组，数组不允许被赋值. 同时char *list[]是非法的.
+    
+5.1 设置文件描述符的close-on-exec标志？    
+    a. 这是文件描述符的唯一flag，通过fcntl函数设置.设置方法如下： fcntl (fd, F_SETFD, FD_CLOEXEC).
+    b. 文件描述符在fork之后，exec之前仍然是可用的。于close-on-exec标志无关.
+
+5.2 如何在exec的程序中使用继承来的文件描述符？
+    a. 通过参数传递.这时需要将文件描述符字符串化
+    b. 通过UNIX域套接字在进程之间（不限于父子进程）传递文件描述符.
+
+5.3 同一个文件在同一个进程中被打开两遍，那么它们拥有的是不同的文件描述符和不同的文件表. 若同时操作这
+    两个文件, 就会有乱序问题。 
+    同一个文件在不同的线程中同时进行操作，会存在write操作命名都是返回的成功，但是文件中记录的内容缺有丢失.
+    究其原因应该是：文件内容已经写入文件，但是文件指针还未来得及更新，这两者不是原子操作。
+    解决办法是在open是指定O_APPEND.
+
+5.4 能打开的文件描述符的最大数量是1024, OPEN_MAX. 同理，你能打开的管道数量最多就是512个。
+
+6.1 结构体定义
+    不能定义静态变量.
+    -> [] * 它们是结构体变量常用的操作符号. 它们的优先级是递减的。
+    
+
+8.1 enum 枚举类型的大小？ sizeof (myenum) == 4
+    向enum变量赋予其它值？enum类型的变量等价于int类型的变量(long类型的变量在本机占8位), 所以允许。
+
+9.1 标准IO函数fdopen.
+    1. FILE *fdopen(int fd, const char *mode).  
+       @fd会在fdopen成功调用返回以后被关闭，所以不应该再次调用close函数.
+       @mode 的形式和fopen中mode的形式一致，注意"rw"是非法的mode, fdopen能调用成功，但后面的IO操作会失败.
+       pass "rw" will cause wierd failure when you call fprintf, should use "w+" or "a+"
+
+    2. unlink 一般被用来删除一个自己创建的文件，即创建了一个临时文件。
+       unlink 操作是否能成功只与文件的权限和进程的权限相关.
+
+9.2 标准IO的继承问题
+    文件以freopen, fopen, fdopen 打开并被继承时， IO缓冲区也会被继承（包括标准输入缓冲区和标准输出缓冲区）.
+    如果缓冲区当中有内容就会被继承。
+    这个问题的严重性在于：标准IO是全缓冲的.
+    设置行缓冲的函数是setvbuf，这个函数需要在任何IO操作之前被调用.
+
+10.1opendir返回的是DIR*，如何解释？
+    可以将它于FILE*进行类比，即它们都是对文件描述符的封装。FILE封装的是文件，DIR封装的是目录。
+    dirfd 返回DIR底层的文件描述符。
+
+11.1 获取时间统计的几个函数 time, times, gettimeofday
+11.2 free(NULL) 是合法的，常用于程序设计当中.
+11.3 lseek, getenv, stat, gethostname, getpass, getpwnam_r, getsid, getpgrp
+     注意：getpwname函数与getlogin之间的区别！即两个登录名可以对应统一个uid。这时候你调用getpwnam总是
+     返回某一个。如果你想得到的是登陆时输入的用户名，可以用getlogin函数
+
+11.4 被信号打断的系统调用是否重启动是由信号决定的. sigaction结构体当中的sa_flag = SA_RESTART. 
+     在LINUX系统中，signal函数默认自动重启动被打断的系统调用.
+11.5 #error 用法： #error string. 将会在编译期间报高错误.
+11.6 # 和 ## 的使用注意事项.
+     #type 和 ...##type : type必须是宏函数的参数. 例子如下:
+     #define makeval(num, val) int##num##_t val
+     #define makeval2(num, val) num##_t val
+11.7 在栈上定义动态数组. 这是C99规定的语法.  const int num = 10; char myarray [num]; /* 必须是 const 类型. */
+     GCC完全支持， VS2013则不支持.
+11.8 OFFSET的定义。#define OFFSETOF(type, field)   (int)&(((type *)0)->field).
+     注意取地址符的位置，没有它的话就是发生内存访问错误了.
+11.9 fopen可以打开一个目录，注意是目录，但是fgets的时候确实一团糟. 
+interrupt_system_call_2.c
+name_max_test.c
