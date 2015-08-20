@@ -1,0 +1,2 @@
+TTT=ls
+echo %TTT%
