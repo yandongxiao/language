@@ -1,0 +1,26 @@
+#! /usr/bin/python
+
+def sample():
+    n = 0
+    def set_n(num):
+        nonlocal n
+        n = num
+
+    def get_n():
+        return n        
+
+    def func():
+        print("n=", n)
+
+    func.set_n = set_n
+    func.get_n = get_n
+    return func
+
+if __name__ == '__main__':
+    f = sample()
+    f()
+    n= 0
+    f.set_n(10)
+    f()
+    print(f.get_n())
+

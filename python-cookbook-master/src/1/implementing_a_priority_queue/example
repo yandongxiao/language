@@ -1,0 +1,37 @@
+#! /usr/bin/python
+# example.py
+#
+# Example of a priority queue
+
+import heapq
+
+class priqueue :
+    def __init__(self):
+        self._heap = []     # the "_" for what ?
+        self.order = 0
+
+    def push(self, item, pri):
+        heapq.heappush(self._heap, (-pri,self.order, item)) #If no self.order, the Item("yyyy") will not allowed push.
+        self.order += 1
+    
+    def pop(self):
+        return heapq.heappop(self._heap)[-1]    # the heapq.heappop always return the smallest value.
+
+class Item : 
+    def __init__(self, name):
+        self.name = name
+    def __repr__(self):
+        return "Item(%s)" % self.name 
+
+myqueue = priqueue()
+myqueue.push(Item("aaaa"), 5)
+myqueue.push(Item("xxxx"), 1)
+myqueue.push(Item("bbbb"), 4)
+myqueue.push(Item("yyyy"), 1)
+
+
+print("should be aaaa : ", myqueue.pop())
+print("should be bbbb : ", myqueue.pop())
+print("should be xxxx : ", myqueue.pop())
+print("should be yyyy : ", myqueue.pop())
+

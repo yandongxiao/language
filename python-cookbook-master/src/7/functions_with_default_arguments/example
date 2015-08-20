@@ -1,0 +1,42 @@
+#! /usr/bin/python
+
+#def spam():
+#    return []   #error try.
+
+def spam(b=[]):
+    return b   #if you return a local list.
+
+a = spam()
+print(a)
+a.append(1)
+a.append(2)
+b = spam()
+print(b)       #  Carefully observe result
+print('-'*10)
+
+
+#same with the first error try.
+def spam(b=None):
+    if b is None:
+        return []
+    return b
+
+a = spam()
+print(a)
+a.append(1)
+a.append(2)
+b = spam()
+print(b)
+print('-'*10)
+
+# (c) Example of testing if an argument was supplied or not
+__dft_obj__ = object
+def spam(b = __dft_obj__):
+    if b is __dft_obj__:    # if .. is ..
+        print("No b value supplied")
+    print("b = {}".format(b))
+
+spam()
+spam(None)
+spam(0)
+spam([])

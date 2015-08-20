@@ -1,0 +1,17 @@
+#! /usr/bin/python
+
+a = [1,2,3,4,6,4,3,2,5]
+
+s = set(a)
+print(s)
+
+# for hashable element type type 
+def unique(iterable, key = None):
+    s = set()
+    for value in iterable:
+        value = value if key is None else key(value)
+        if value not in s:
+            yield value
+            s.add(value)
+
+print(list(unique(a)))

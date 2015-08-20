@@ -1,0 +1,16 @@
+#! /usr/bin/python
+
+from collections import OrderedDict
+
+dd = OrderedDict()
+dd['name'] = "dx"
+dd['age'] = 10
+dd['male'] = True
+
+for key, indx in zip(dd.keys(), range(len(dd))):
+    if 0 == indx:
+        assert dd[key] == 'dx'
+    elif 1 == indx:
+        assert dd[key] == 10
+    else:
+        assert dd[key] == True

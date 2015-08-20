@@ -1,0 +1,37 @@
+#! /usr/bin/python
+
+from collections import defaultdict
+
+#for list
+
+dd = defaultdict(list)
+dd['name'].append('yan')
+dd['name'].append('dx')
+dd['name'].append('dx')
+dd['age'].append(10)
+
+assert sorted(list(dd.keys())) == ['age', 'name']       # key can be a list.
+assert type(dd['name']) == list
+
+for value in dd.values():
+    assert sorted(value) in [["dx", 'dx', 'yan'], [10]]
+
+
+# for set
+
+a = {1,2,3} # a is set
+dd = defaultdict(set)
+dd['name'].add('yan')
+dd['name'].add('dx')
+dd['name'].add('dx')
+
+for value in dd.values():
+    assert value in [{'yan', "dx"}, [10]]
+
+# for dict
+dd = defaultdict(dict)      # for a clss type
+
+#dd['name'].append('yand')   # error
+dd['name'] = 'yand'
+
+

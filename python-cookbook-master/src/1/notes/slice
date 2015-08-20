@@ -1,0 +1,29 @@
+#! /usr/bin/python
+
+a = [1,2,3,4,5,6,7]
+
+
+SLICE = slice(0, -1)
+b = a[SLICE]    # same to a[0:-1]
+assert SLICE.start == 0
+assert SLICE.stop == -1
+assert SLICE.step == None
+
+SLICE = slice(0, -1, 2)
+assert SLICE.step == 2
+print( SLICE.indices(len("heo"))  )
+assert SLICE.indices(len("heo")) == (0, 2, 2)
+
+
+SLICE = slice(0, 100, 2)
+print( "heo"[10:100:2] )    # no IndexError too.
+print( "heo"[SLICE] )   # no IndexError
+
+s = "helloworld"
+nlice = SLICE.indices(len(s))
+
+for x in range(*nlice):
+    print(s[x], end=" ")
+print()
+
+#s[100]  # have index error.

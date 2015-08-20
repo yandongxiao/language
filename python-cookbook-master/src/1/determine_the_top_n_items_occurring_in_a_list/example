@@ -1,0 +1,23 @@
+#! /usr/bin/python
+# example.py
+#
+# Determine the most common words in a list
+
+words = [
+   'look', 'into', 'my', 'eyes', 'look', 'into', 'my', 'eyes',
+   'the', 'eyes', 'the', 'eyes', 'the', 'eyes', 'not', 'around', 'the',
+   'eyes', "don't", 'look', 'around', 'the', 'eyes', 'look', 'into',
+   'my', 'eyes', "you're", 'under'
+]
+
+from collections import Counter     # the Counter is a subclass of dict.
+counter = Counter(words)
+most = counter.most_common(3)
+print(most)
+
+morewords = ['why','are','you','not','looking','in','my','eyes']
+counter.update(morewords)
+most = counter.most_common(3)
+print(most)
+
+print (counter['not'])

@@ -1,0 +1,25 @@
+#!/usr/bin/python
+
+import html
+
+def avg(first, *args):
+    return (first + sum(args) ) / (1 + len(args))
+
+print(avg(1,2))
+print(avg(1,2,3,4))
+
+
+def make_element(name, value, **attr):
+    attrlt = [' %s="%s"' % (x,y) for x,y in attr.items()]
+    attrstr = ''.join(attrlt)
+    element = '<{name}{attr}>{value}</{name}>'.format(
+                                name=name,
+                                attr = attrstr,
+                                value = html.escape(value))
+    return element
+
+
+# Example
+# Creates '<item size="large" quantity="6">Albatross</item>'
+print(make_element('item', 'Albatross', size='large', quantity=6))
+print(make_element('p','<spam>'))

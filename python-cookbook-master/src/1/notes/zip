@@ -1,0 +1,21 @@
+#! /usr/bin/python
+
+prices = {
+    'ACME': 45.23,
+    'AAPL': 612.78,
+    'IBM': 205.55,
+    'HPQ': 37.20,
+    'FB': 10.75
+}
+
+minprice = min(zip(prices.values(), prices.keys()))
+print(minprice)
+
+zz = zip(prices.values(), prices.keys())
+for x in zz:
+    print(x)
+
+for x in zz:    # no out put.
+    print(x)
+
+

@@ -1,0 +1,67 @@
+#! /usr/bin/python
+
+num = 0
+
+class Test():
+    def __init__(self):
+        pass
+
+t = Test()  #TypeError: 'Test' object is not iterable
+#iter(t)    
+
+# there are two ways to construct a iterator.
+class Itr(object):
+    def __init__(self):
+        self.result = ['a', 'b', 'c', 'd']
+        self.i = iter(self.result)
+        
+    def __call__(self):
+        res = next(self.i)
+        print("__call__ called, which would return ", res)
+        return res
+
+    def __next__(self):
+        print("next")
+
+    def __iter__(self):
+        print("__iter__ called")
+        return iter(self.result)
+
+itr = Itr()
+i1 = iter(itr, 'c')     #this is a callable-iterator.
+print("i1 = ", i1)
+
+i2 = iter(itr)  #this is a list iterator. there are also string, tuple, dict, set iterator.
+print("i2 = ", i2)
+
+for i in i1:    # every time __call__ will b called.
+    print(i)
+
+print("-------")
+for i in i2:    # it is not called.
+    print(i)
+
+for i in i2:    # no output
+    print(i)
+
+class Test():
+    def __init__(self):
+        self.idx = 1
+
+    def __iter__(self):
+        print("__iter__ called")
+        return self
+
+    def __next__(self):
+        print("__next__ called.")
+        if(self.idx < 100):
+            self.idx += 1
+            return self.idx
+        raise StopIteration
+
+t = Test()
+for x in Test():    # call __iter__ first and then call __next__, at last call __iter__
+    print(x)
+print("for over")
+next(t)
+assert iter(t) is t

@@ -1,0 +1,41 @@
+#! /usr/bin/python
+# example.py
+#
+# Sort a list of a dicts on a common key
+
+class itemgetter : 
+    def __init__(self, item, *items):   #*item is a tuple, you do not need to assign it.
+        if not items:
+            def func(obj):     # you can define a function in a function.
+                return obj[item]
+        else:
+            items = (item, ) + items    # the items can be used in func  ?
+            def func(obj):
+                # items = 1             # If you do this, you will get an error.
+                return tuple(obj[i] for i in items)    #(x for x in items) create a generator object, [x for x in items] is a list.
+        self._func = func
+
+    def __call__(self, obj) :
+        return self._func(obj)
+        
+rows = [
+    {'fname': 'Brian', 'lname': 'Jones', 'uid': 1003},
+    {'fname': 'David', 'lname': 'Beazley', 'uid': 1002},
+    {'fname': 'John', 'lname': 'Cleese', 'uid': 1001},
+    {'fname': 'Big', 'lname': 'Jones', 'uid': 1004}
+]
+
+rows_by_fname = sorted(rows, key=itemgetter('fname'))
+rows_by_uid = sorted(rows, key=itemgetter('uid'))
+
+from pprint import pprint
+
+print("Sorted by fname:")
+pprint(rows_by_fname)
+
+print("Sorted by uid:")
+pprint(rows_by_uid)
+
+rows_by_lfname = sorted(rows, key=itemgetter('lname','fname'))
+print("Sorted by lname,fname:")
+pprint(rows_by_lfname)

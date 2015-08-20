@@ -1,0 +1,20 @@
+#! /usr/bin/python
+
+
+import re
+
+# Some sample text
+text = 'Today is 11/27/2012. PyCon starts 3/13/2013.'
+
+tp = re.compile(r'(\d)+/(\d)+/(\d)')
+
+a = tp.sub(r'\3-\1-\2', text)
+print(a)
+
+from calendar import month_abbr
+def change_date(m):     #the type of m is special.
+    mon_name = month_abbr[int(m.group(1))]
+    return '{} {} {}'.format(m.group(3), mon_name, m.group(2))
+
+b = tp.sub(change_date, text)
+print(b)

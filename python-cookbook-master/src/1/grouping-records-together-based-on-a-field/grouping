@@ -1,0 +1,45 @@
+#! /usr/bin/python
+rows = [
+    {'address': '5412 N CLARK', 'date': '07/01/2012'},
+    {'address': '5148 N CLARK', 'date': '07/04/2012'},
+    {'address': '5800 E 58TH', 'date': '07/02/2012'},
+    {'address': '2122 N CLARK', 'date': '07/03/2012'},
+    {'address': '5645 N RAVENSWOOD', 'date': '07/02/2012'},
+    {'address': '1060 W ADDISON', 'date': '07/02/2012'},
+    {'address': '4801 N BROADWAY', 'date': '07/01/2012'},
+    {'address': '1039 W GRANVILLE', 'date': '07/04/2012'},
+]
+
+mydict = {}
+for x in rows :
+    if x['date'] not in mydict:
+        mydict[x['date']] = list()
+    mydict[x['date']].append(x)
+
+for x in mydict.keys():
+    print(x)
+    for y in mydict[x]:     # If you do not want judge the existense of key, usr collections.defaultdict
+        print("    ", end = "")
+        print(y)
+
+from collections import defaultdict
+mydict = defaultdict(list)  # the element of key is 
+for x in rows:
+    mydict[x['date']].append(x)
+
+for x in mydict.keys():
+    print(x)
+    for y in mydict[x]:     # If you do not want judge the existense of key, usr collections.defaultdict
+        print("    ", end = "")
+        print(y)
+
+print("\n there is another easy way.\n")
+
+from itertools import groupby
+rows.sort(key=lambda x : x['date']) # this statement is important too.
+for key, value in groupby(rows, key=lambda x : x['date']) :
+    print(key)
+    for x in value :
+        print("    ", x)
+
+

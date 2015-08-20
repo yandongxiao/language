@@ -1,0 +1,29 @@
+#! /usr/bin/python
+
+#a = [1, 5, 2, 1, 9, 1, 5, 10]
+a = [ 
+    {'x': 2, 'y': 3},
+    {'x': 1, 'y': 4},
+    {'x': 2, 'y': 3},
+    {'x': 2, 'y': 3},
+    {'x': 10, 'y': 15}
+]
+
+b = list()
+
+#by doing this, you have not order.
+for x in a:
+    if x not in b:
+        b.append(x)
+print(a)
+print(b)
+
+def unique(iterable, key):
+    myset = set()
+    for elmt in iterable:
+        val = elmt if key is None else key(elmt)
+        if val not in myset:
+            yield elmt
+        myset.add(val)
+
+print( list(unique(a, key=lambda a: (a['x'], a['y'])) ) )

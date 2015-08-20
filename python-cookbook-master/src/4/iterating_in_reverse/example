@@ -1,0 +1,23 @@
+#! /usr/bin/python
+
+class Counter:
+    def __init__(self, data):
+        self.data = data
+    def __iter__(self):
+        n = self.data
+        while(n>0):
+            yield n
+            n -= 1
+    def __reversed__(self):
+        n = 1
+        while(n <= self.data):
+            yield n
+            n += 1
+c = Counter(5)
+print("Forward:")
+for x in c:
+    print(x)
+
+print("Reverse:")
+for x in reversed(c):
+    print(x)

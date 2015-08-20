@@ -1,0 +1,35 @@
+#! /usr/bin/python
+
+def sample():
+    yield "Is"
+    yield "Chicago"
+    yield "Not"
+    yield "Chicago?"
+
+# method one
+output = ''.join(sample())
+print(output)
+
+# method two.
+
+import sys      #when you write to stdout, not os.
+for elmt in sample():
+    sys.stdout.write(elmt)
+sys.stdout.write('\n')
+
+# method 3. what is the difference between 2 and 3.
+def buffer_io(itb, max_size):
+    size = 0
+    lt = []
+    for elmt in itb:
+        lt.append(elmt)
+        size += len(elmt)
+        if(size > max_size):
+            yield "".join(lt)
+            lt = []
+            size = 0
+    yield "".join(lt)
+
+for x in buffer_io(sample(), 12345):
+    sys.stdout.write(x)
+sys.stdout.write('\n')

@@ -1,0 +1,20 @@
+#! /usr/bin/python
+
+a = [1, 5, 2, 1, 9, 1, 5, 10]
+b = list()
+
+#by doing this, you have not order.
+for x in a:
+    if x not in b:
+        b.append(x)
+print(a)
+print(b)
+
+def unique(iterable):
+    myset = set()
+    for elmt in iterable:
+        if elmt not in myset:
+            yield elmt
+        myset.add(elmt)
+
+print( list(unique(a)) )

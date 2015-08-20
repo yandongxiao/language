@@ -1,0 +1,43 @@
+#! /usr/bin/python
+# Examples of different ways to filter data
+
+mylist = [1, 4, -5, 10, -7, 2, 3, -1]
+
+# All positive values
+pos = [ x for x in mylist if x > 0 ]    # the first format.
+print(pos)
+
+# All negative values
+neg = [ x for x in mylist if x < 0 ]
+print(neg)
+
+# Negative values clipped to 0
+neg_clipped = [ x if x > 0 else 0 for x in mylist ] # the second format.
+print(neg_clipped)
+
+# Positive values clipped to 0
+pos_clipped = [ x if x < 0 else 0 for x in mylist]
+print(pos_clipped)
+
+# Compressing example
+
+addresses = [
+    '5412 N CLARK',
+    '5148 N CLARK', 
+    '5800 E 58TH',
+    '2122 N CLARK',
+    '5645 N RAVENSWOOD',
+    '1060 W ADDISON',
+    '4801 N BROADWAY',
+    '1039 W GRANVILLE',
+]
+
+counts = [ 0, 3, 10, 4, 1, 7, 6, 1]
+
+from itertools import compress
+more5 = [ n > 5 for n in counts ]   # the third format
+a = list(compress(addresses, more5))
+print(a)
+
+b = [y for x,y in zip(counts, addresses) if x > 5 ]
+print (b)

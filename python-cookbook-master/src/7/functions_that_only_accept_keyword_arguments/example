@@ -1,0 +1,21 @@
+#! /usr/bin/python
+
+def recv(maxsize, *, flag = False):
+    print(maxsize, flag)
+
+recv(8192, flag = False)    #works
+
+try:
+    recv(8192, True)    #failed
+except TypeError as e:
+    print(e)
+
+
+def minimum(*args, clip = None):
+    maxmin = min(*args)
+    if clip is not None:    #different if clip:, invokers will assign it a 0
+        return clip if maxmin < clip else maxmin 
+    return maxmin
+
+print(minimum(1, 5, 2, -5, 10))
+print(minimum(1, 5, 2, -5, 10, clip=0))

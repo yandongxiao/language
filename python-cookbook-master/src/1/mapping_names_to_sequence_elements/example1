@@ -1,0 +1,21 @@
+#! /usr/bin/python
+
+from collections import namedtuple
+
+stock = namedtuple('Stock', ['name', 'shares', 'price'])    # create a class named Stock dynamicly, and type(stock) is a type.
+
+# Some Data
+records = [
+    ('GOOG', 100, 490.1),
+    ('ACME', 100, 123.45),
+    ('IBM', 50, 91.15)
+]
+
+def compute_cost(records):
+    total = 0.0
+    for elm in records:
+        s = stock(*elm)     # create a stock instance.
+        total += s.shares * s.price
+    return total
+
+print(compute_cost(records))

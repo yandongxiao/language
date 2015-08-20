@@ -1,0 +1,20 @@
+#! /usr/bin/python
+
+records = [
+     ('foo', 1, 2),
+     ('bar', 'hello'),
+     ('foo', 3, 4),
+]
+
+def do_foo(x,y):
+    print('foo', x, y)
+
+def do_bar(s):
+    print('bar', s)
+
+for name, *args in records :  # the *var sytax can only be used in fun and here. in function args is a tuple
+    if name == 'foo':
+        do_foo(*args)
+
+    elif name == 'bar':
+        do_bar(*args)

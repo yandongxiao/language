@@ -1,0 +1,44 @@
+TOPIC : Introduce some of the main reasons behind Python’s popularity
+
+Why Do People Use Python? 
+    1. one million Python users.
+    2. Software quality. Python code is designed to be readable, and hence reusable and maintainable—much more so than traditional scripting languages.
+       support OO and functional programming(函数式编程)
+    3. Developer productivity. Python boosts(提高) developer productivity many times beyond compiled or statically typed languages
+       such as C, C++, and Java. Python code is typically one-third to one-fifth the size of equivalent C++ or Java code.
+    4. Program portability. Most Python programs run unchanged on all major computer platforms, Windows, Linux and Mac.
+    5. Support libraries. Python comes with a large collection of prebuilt and portable functionality, known as the standard library(Python 标准库).
+    6. Component integration. Python scripts can easily communicate with other parts of an application, using a variety of integration mechanisms.
+    7. Enjoyment.
+
+Softare Quality:
+    a deliberately(独特地) simple and readable syntax
+    a highly coherent programming model(高度一致的编程模型)
+    Follow naturally from a small set of core concepts, this makes the language easier to learn, understand, and remember.
+    This means that although there are usually multiple ways to accomplish a coding task, there is usually just one obvious way    
+    同一个想法下，不同的开发者写出的python代码会高度的一致.
+    Note: For a more complete look at the Python philosophy, type the command import this at any Python interactive prompt
+
+Developer Productivity:
+    Python has shined as a tool that allows programmers to get more done with less effort.
+    It is deliberately optimized for speed of development—its simple syntax, dynamic typing, lack of compile steps, and built-in toolset
+
+
+Is Python a “Scripting Language”?
+    Python is a general-purpose programming language that is often applied in scripting roles. It is commonly defined as an object-oriented scripting language.
+    In short, the
+standard implementations of Python today compile (i.e., translate) source code state-
+ments to an intermediate format known as byte code and then interpret the byte code.
+Byte code provides portability, as it is a platform-independent format.
+
+The PyPy system discussed in the next chapter can
+achieve a 10X to 100X speedup on some code by compiling further as your program
+runs, but it’s a separate, alternative implementation.
+
+Python has been optimized numerous times, and Python code
+runs fast enough by itself in most application domains.
+
+Python’s speed-of-development gain is often far more important than any
+speed-of-execution loss, especially given modern computer speeds.
+
+compiled extensions
