@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 2.8)
+
+if (WIN32) 
+  if (CMAKE_CL_64) 
+      set(ARCH_DIR "win32") 
+  else(CMAKE_CL_64) 
+      set(ARCH_DIR "win64") 
+  endif(CMAKE_CL_64)
+elseif (UNIX)
+    EXECUTE_PROCESS(COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE )
+    if( ${ARCHITECTURE} STREQUAL "x86_64" )
+        set(ARCH_DIR "linux64") 
+    else()
+        set(ARCH_DIR "linux32") 
+    endif()
+endif()
+
+MESSAGE(${ARCH_DIR})
