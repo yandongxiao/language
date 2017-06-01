@@ -23,7 +23,7 @@ print(pos_clip)
 
 addresses = [
     '5412 N CLARK',
-    '5148 N CLARK', 
+    '5148 N CLARK',
     '5800 E 58TH',
     '2122 N CLARK',
     '5645 N RAVENSWOOD',
@@ -42,4 +42,3 @@ print(a)
 
 b = [y for x,y in zip(counts, addresses) if x > 5 ]
 print (b)
-
