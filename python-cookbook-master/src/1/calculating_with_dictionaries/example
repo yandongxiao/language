@@ -10,17 +10,18 @@ from sys import argv
 import re
 
 # read lines above.
-#http://www.cnblogs.com/sevenyuan/archive/2010/12/06/1898075.html  for re.search
+# http://www.cnblogs.com/sevenyuan/archive/2010/12/06/1898075.html  for re.search
 fd = open(argv[0])
 linenum = 0
-mydict = { }
-mylist = [ ]
+mydict = {}
+mylist = []
+
 for line in fd.readlines():
     linenum += 1
     if linenum < 2 :
         continue
     if linenum > 7 :
-       break 
+       break
     key = re.search(r'\'.*\'', line)
     value = re.search(r'\s[0-9\.]+', line)  # must be '+' not '*'. why ?
     if key and value:
@@ -28,8 +29,8 @@ for line in fd.readlines():
 
 
 print(mydict)
-minentry = min(zip( mydict.values(), mydict.keys()))    # can not use dict.items(), becasue Key is in first.
-minentry = max(zip( mydict.values(), mydict.keys()))
+minentry = min(zip(mydict.values(), mydict.keys()))    # can not use dict.items(), becasue Key is in first.
+minentry = max(zip(mydict.values(), mydict.keys()))
 list_entry = sorted(zip( mydict.values(), mydict.keys()))
 
 for x in list_entry :
