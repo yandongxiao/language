@@ -1,54 +1,53 @@
 #! /usr/bin/python
+# encoding: utf-8
 #
-#object : iterable.
+# object : iterable.
 #
-#method : simple assignment operation.
+# method : simple assignment operation.
 #
-#Note : the number of variables and structure match the sequence. 
-#       If there is a mismatch in the number of elements, you’ll get an error.
+# Note : the number of variables and structure match the sequence.
+#   if therr is a mismatch in the number of elements, you’ll get an ValueError error.
 #
 
 # examples.
 
-#method 1
-#a, b, c  = "1,2,3"  # ValueError: too many values to unpack
+# method 1
+# a, b, c  = "1,2,3"  # ValueError: too many values to unpack
 a, b, c = "123"
 assert a == '1' and b == '2' and c == '3'
 
-#method 2
+# method 2
+# 注意左边使用的是圆括号
 a, b, c = [1,2,(3,4,5)]
-assert a==1 and b==2 and c ==(3,4,5)
+assert a==1 and b==2 and c == (3,4,5)
 a, b, (x,y,z) = [1,2,(3,4,5)]
 assert a==1 and b==2 and x==3 and y==4 and z==5
 a, b, (x,y,z) = [1,2,[3,4,5]]
 assert a==1 and b==2 and x==3 and y==4 and z==5
 
-#method 3
-#*b = (1,2,3)    #SyntaxError: starred assignment target must be in a list or tuple
-(*b,) = (1,2,3)
-[*b] = (1,2,3)  # b is a always list.
+# method 3
+# *b = (1,2,3)      # SyntaxError: starred assignment target must be in a list or tuple
+(*b,) = (1,2,3)     # (a) 这个不是一个tuple， (a,) 表示只有元素a的tuple
+assert b == [1,2,3]
+[*b] = (1,2,3)      # b is a always list.
 # assert b == (1,2,3)    # AssertionError
 assert b == [1,2,3]
 
-#method 4
+# method 4
 #*b,a,c = (1,)  # Valueerror
-*b,a,c = (1,2,3)
+*b,a,c = (1,2,3)    # 在左边
 assert b == [1]
 
-*b,a,c = (1,2)
-assert b == []
+*b,a,c = (1,2)      # 在右边
+assert b == []      # NOTE: 可以为空
 
 a,*b,c = (1,2,3,4)
 assert b == [2,3]
 
-a, b, *c = (1,2,3,,4)
-assert c == [3,4]
+a, b, *c = (1,2,3,4)
+assert c == [3,4]   # 总是list
 
-
-#method 5
+# method 5
 _, b, _ = (1,2,3)
 assert b == 2
-
-
-
 
