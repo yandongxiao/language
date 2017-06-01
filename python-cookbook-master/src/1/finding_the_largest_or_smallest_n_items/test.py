@@ -14,4 +14,12 @@ portfolio = [
 ]
 
 print heapq.nsmallest(3, portfolio, lambda s: s['price'])
+portfolio.sort(key=lambda s: s['price'])
+for i in range(0, 3):
+    print portfolio[i]
+
+
 print heapq.nlargest(3, portfolio, lambda s: s['price'])
+portfolio.sort(key=lambda s: s['price'], reverse=True)
+for i in range(0, 3):
+    print portfolio[i]
