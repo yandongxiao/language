@@ -1,11 +1,9 @@
-#! /usr/bin/python
+#!/usr/bin/env python
+# encoding: utf-8
 
 import heapq
 
-def sort_key(d):
-    return d['price']
-
-
+# dict 是无法比较大小的
 portfolio = [
    {'name': 'IBM', 'shares': 100, 'price': 91.1},
    {'name': 'AAPL', 'shares': 50, 'price': 543.22},
@@ -15,10 +13,5 @@ portfolio = [
    {'name': 'ACME', 'shares': 75, 'price': 115.65}
 ]
 
-#heapq.nsmallest(3, portfolio, key=lambda d : d['price'])
-nsmallest = heapq.nsmallest(3, portfolio, key = sort_key)
-print(nsmallest)
-
-nlargest = heapq.nlargest(3, portfolio, key = sort_key)
-print(nlargest)
-
+print heapq.nsmallest(3, portfolio, lambda s: s['price'])
+print heapq.nlargest(3, portfolio, lambda s: s['price'])
