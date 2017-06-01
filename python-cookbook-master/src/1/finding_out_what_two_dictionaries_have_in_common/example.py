@@ -15,7 +15,10 @@ b = {
    'y' : 2
 }
 
-print('Common keys:', a.keys() & b.keys())
-print('Keys in a not in b:', a.keys() - b.keys())
-print('(key,value) pairs in common:', a.items() & b.items())
+print('Common keys:', a.viewkeys() & b.viewkeys())
+print('Keys in a not in b:', a.viewkeys() - b.viewkeys())
+#print('(key,value) pairs in common:', a.items() & b.items())
 
+for key in a.viewkeys() & b.viewkeys():
+    if a[key] == b[key]:
+        print (key, a[key])
