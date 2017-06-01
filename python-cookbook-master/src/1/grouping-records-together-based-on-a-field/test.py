@@ -1,4 +1,6 @@
-#! /usr/bin/python
+#!/usr/bin/env python
+# encoding: utf-8
+
 rows = [
     {'address': '5412 N CLARK', 'date': '07/01/2012'},
     {'address': '5148 N CLARK', 'date': '07/04/2012'},
@@ -10,24 +12,30 @@ rows = [
     {'address': '1039 W GRANVILLE', 'date': '07/04/2012'},
 ]
 
-from itertools import groupby
 
+# method1
 rows.sort(key=lambda r: r['date'])
-for date, items in groupby(rows, key=lambda r: r['date']):
-    print(date)
-    for i in items:
-        print('    ', i)
+date = rows[0]['date']
+print date
+for r in rows:
+    if date != r['date']:
+        date = r['date']
+        print date
+    print('    ', r)
 
-# Example of building a multidict
+
+# method2
 from collections import defaultdict
 rows_by_date = defaultdict(list)
-for row in rows:
-    rows_by_date[row['date']].append(row)
+date = rows[0]['date']
+for r in rows:
+    if date != r['date']:
+        date = r['date']
+    rows_by_date[date].append(r)
 
-for r in rows_by_date['07/01/2012']:
-    print(r)
+for key, rows in rows_by_date.items():
+    print key
+    for row in rows:
+        print('    ', row)
 
-new_rows_by_date = {}
-for row in rows :
-    new_rows_by_date[row['date']] = row #another same date element will replace it.
-print new_rows_by_date
+
