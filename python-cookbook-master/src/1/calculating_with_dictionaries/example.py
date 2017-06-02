@@ -22,6 +22,7 @@ prices = {
 #        [1, 2] > 'foo'   # 'list' < 'str'
 #
 # prices.keys() 和 prices.values() 是两个独立的sequence，但是{ prices.keys()[i] : prices.values()[i] } 就是prices的一个元素
+# NOTE: zip() 函数创建的是一个只能访问一次的迭代器。
 min_price = min(zip(prices.values(), prices.keys()))
 max_price = max(zip(prices.values(), prices.keys()))
 print('min price:', min_price)
