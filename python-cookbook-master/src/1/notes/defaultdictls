@@ -26,7 +26,7 @@ dd['name'].add('dx')
 dd['name'].add('dx')
 
 for value in dd.values():
-    assert value in [{'yan', "dx"}, [10]]
+    assert value in [{'yan', "dx"}]
 
 # for dict
 dd = defaultdict(dict)      # for a clss type

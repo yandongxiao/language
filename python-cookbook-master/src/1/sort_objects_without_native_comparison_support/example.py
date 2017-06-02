@@ -1,4 +1,7 @@
 #! /usr/bin/python
+# encoding: utf-8
+
+# attrgetter的实现方式
 
 class attrgetter :
     def __init__(self, attr, *attrs):

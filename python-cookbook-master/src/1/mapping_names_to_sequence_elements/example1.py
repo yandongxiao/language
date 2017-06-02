@@ -1,7 +1,7 @@
 #! /usr/bin/python
 # encoding: utf-8
 
-# 命名元组的核心作用是解决以下表区分不同对象所带来的问题
+# 命名元组的核心作用是解决以下标区分不同对象所带来的问题
 
 from collections import namedtuple
 # namedtuple函数返回Python中标准元组类型子类的一个工厂方法
