@@ -1,8 +1,9 @@
 #! /usr/bin/python
+# encoding: utf-8
 
 a = [1,2,3,4,5,6,7]
 
-
+# 命名切片
 SLICE = slice(0, -1)
 b = a[SLICE]    # same to a[0:-1]
 assert SLICE.start == 0
@@ -23,7 +24,7 @@ s = "helloworld"
 nlice = SLICE.indices(len(s))
 
 for x in range(*nlice):
-    print(s[x], end=" ")
+    print s[x],
 print()
 
 #s[100]  # have index error.

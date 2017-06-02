@@ -2,6 +2,10 @@
 
 from collections import OrderedDict
 
+# 在迭代操作的时候它会保持元素被插入时的顺序
+# 当你想要构建一个将来需要序列化，如json串，或编码成其他格式的映射的时候，非常有用
+# 对于一个已经存在的键的重复赋值不会改变键的顺序
+# 一个 OrderedDict 的大小是一个普通字典的两倍
 dd = OrderedDict()
 dd['name'] = "dx"
 dd['age'] = 10
