@@ -7,22 +7,30 @@ a = {'x': 1, 'z': 3 }
 b = {'y': 2, 'z': 4 }
 
 # (a) Simple example of combining
+# 1. ChainMap并没有创建一个新的Map
+# 2. 如果出现重复键，那么第一次出现的映射值会被返回
+# 3. 在a和b表上的修改会映射到c表上
 from collections import ChainMap
 c = ChainMap(a,b)
-print(c['x'])      # Outputs 1  (from a)
-print(c['y'])      # Outputs 2  (from b)
-print(c['z'])      # Outputs 3  (from a)
-
-# Output some common values
-print('len(c):', len(c))        # 3
-print('c.keys():', list(c.keys()))  # x z y
-print('c.values():', list(c.values()))  # 1 3 2
+assert c['x'] == 1
+assert c['y'] == 2
+assert c['z'] == 3
+assert len(c) == 3
 
 # Modify some values
+# 对于字典的更新或删除操作总是影响的是列表中第一个字典
 c['z'] = 10
 c['w'] = 40
 del c['x']
-print("a:", a)
+assert a['z'] == 10
+assert a['w'] == 40
+assert len(a) == 2
+
+c['y'] = 100
+assert a['y'] == 100
+assert len(a) == 3
+assert c['y'] == 100
+assert b['y'] == 2
 
 
 # Example of stacking mappings (like scopes)
