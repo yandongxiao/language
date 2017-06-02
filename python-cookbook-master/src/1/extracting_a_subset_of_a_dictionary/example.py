@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# encoding: utf-8
+
 # example of extracting a subset from a dictionary
 from pprint import pprint
 
@@ -21,6 +23,10 @@ print(p1)
 tech_names = { 'AAPL', 'IBM', 'HPQ', 'MSFT' }
 p2 = { key:value for key,value in prices.items() if key in tech_names }
 
+# 大多数情况下字典推导能做到的，通过创建一个元组序列然后把它传给 dict() 函数也能实现
+p3 = dict((key, value) for key, value in prices.items() if key in tech_names)
+
 print("All techs")
-pprint(p2)
 print(p2)
+print("-----------")
+print(p3)
