@@ -1,6 +1,6 @@
 #! /usr/bin/python
 
-class attrgetter : 
+class attrgetter :
     def __init__(self, attr, *attrs):
         if not attrs:
             if not isinstance(attr, str):
@@ -14,7 +14,7 @@ class attrgetter :
 
     def __call__(self, obj):
         return self._call(obj)
-            
+
 
 class User:
     def __init__(self, user_id):
@@ -28,4 +28,3 @@ print(users)
 
 # Sort it by user-id
 print(sorted(users, key=attrgetter('user_id')))
-

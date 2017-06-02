@@ -9,7 +9,7 @@ records = [
      ('foo', 3, 4),
 ]
 
-def do_foo(x,y):
+def do_foo(x, y):
     print('foo', x, y)
 
 def do_bar(s):
@@ -18,7 +18,9 @@ def do_bar(s):
 for tag, *args in records:  # the type of args is list!!
     if tag == 'foo':
         do_foo(*args)
-        #do_foo(args)       # missing 1 required positional argument: 'y'
+        # 由调用者决定是否将list进行展开
+        # missing 1 required positional argument: 'y'
+        # do_foo(args)
     elif tag == 'bar':
         do_bar(*args)
         do_bar(args)
