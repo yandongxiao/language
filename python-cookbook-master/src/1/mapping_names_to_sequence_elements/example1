@@ -2,7 +2,7 @@
 
 from collections import namedtuple
 
-stock = namedtuple('Stock', ['name', 'shares', 'price'])    # create a class named Stock dynamicly, and type(stock) is a type.
+stock = namedtuple('Stock', ['name', 'shares', 'price'])
 
 # Some Data
 records = [
@@ -14,7 +14,7 @@ records = [
 def compute_cost(records):
     total = 0.0
     for elm in records:
-        s = stock(*elm)     # create a stock instance.
+        s = stock(*elm)     # 注意*号的使用方法
         total += s.shares * s.price
     return total
 
