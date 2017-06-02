@@ -12,6 +12,8 @@ rows = [
 
 from itertools import groupby
 
+# 先按照日期进行排序对groupby函数是必要的，排序意味着需要更多的CPU
+# groupby函数扫描整个序列并且查找连续相同值的元素序列
 rows.sort(key=lambda r: r['date'])
 for date, items in groupby(rows, key=lambda r: r['date']):
     print(date)
@@ -19,6 +21,7 @@ for date, items in groupby(rows, key=lambda r: r['date']):
         print('    ', i)
 
 # Example of building a multidict
+# 也是按照日期进行分类的方法, 但是使用dict就会占用更多的内存，且访问顺序被打乱了
 from collections import defaultdict
 rows_by_date = defaultdict(list)
 for row in rows:
