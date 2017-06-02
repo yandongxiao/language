@@ -13,6 +13,7 @@ portfolio = [
    {'name': 'ACME', 'shares': 75, 'price': 115.65}
 ]
 
+# 参数key的作用就是使用dict中的一个元素作为比较的对象
 print heapq.nsmallest(3, portfolio, lambda s: s['price'])
 portfolio.sort(key=lambda s: s['price'])
 for i in range(0, 3):
