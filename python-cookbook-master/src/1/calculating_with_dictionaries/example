@@ -1,37 +1,20 @@
 #! /usr/bin/python
 
-# 'ACME': 45.23
-# 'AAPL': 612.78
-# 'IBM': 205.55
-# 'HPQ': 37.20
-# 'FB': 10.75
-
-from sys import argv
-import re
-
-# read lines above.
-# http://www.cnblogs.com/sevenyuan/archive/2010/12/06/1898075.html  for re.search
-fd = open(argv[0])
-linenum = 0
-mydict = {}
-mylist = []
-
-for line in fd.readlines():
-    linenum += 1
-    if linenum < 2 :
-        continue
-    if linenum > 7 :
-       break
-    key = re.search(r'\'.*\'', line)
-    value = re.search(r'\s[0-9\.]+', line)  # must be '+' not '*'. why ?
-    if key and value:
-        mydict[key.group(0)] = float(value.group(0))
+prices = {
+   'ACME': 45.23,
+   'BBBB': 45.23,
+   'AAAA': 45.23,
+   'AAPL': 612.78,
+   'IBM': 205.55,
+   'HPQ': 37.20,
+   'FB': 10.75
+}
 
 
-print(mydict)
-minentry = min(zip(mydict.values(), mydict.keys()))    # can not use dict.items(), becasue Key is in first.
-minentry = max(zip(mydict.values(), mydict.keys()))
-list_entry = sorted(zip( mydict.values(), mydict.keys()))
+print min(prices.items(), key=lambda p: p[1])
+print min(zip(prices.values(), prices.keys()))
 
-for x in list_entry :
-    print (x)
+print max(prices.items(), key=lambda p: p[1])
+print max(zip(prices.values(), prices.keys()))
+
+print sorted(prices.items(), key=lambda p: p[1])

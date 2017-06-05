@@ -1,6 +1,7 @@
 #! /usr/bin/python
+# encoding: utf-8
+
 # example.py
-#
 # Example of calculating with dictionaries
 
 prices = {
