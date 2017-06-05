@@ -9,10 +9,8 @@ prices = {
    'FB': 10.75
 }
 
-p1 = { key:value for key, value in prices.items() if value > 200 }    # after in must be a list. the prices.item() return a list
-pprint(p1)  #there have some different with print. e.g. the order of dict elements(from little to big).
-
+print {x:y for x,y in prices.items() if y > 200}
+print dict((x,y) for x,y in prices.items() if y > 200)
 
 tech_names = { 'AAPL', 'IBM', 'HPQ', 'MSFT' }
-p2 = {key:value for key, value in prices.items() if key in tech_names}
-pprint (p2)
+print {x:y for x,y in prices.items() if x in tech_names}
