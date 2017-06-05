@@ -28,7 +28,7 @@ portfolio = [
    {'name':'SCOX', 'shares': 65}
 ]
 
+print min(x['shares'] for x in portfolio)
 
 from operator import itemgetter
-item = min(portfolio, key=itemgetter('shares'))
-print(item)
+print min(portfolio, key=itemgetter("shares"))
