@@ -3,7 +3,7 @@
 #
 # Sort a list of a dicts on a common key
 
-class itemgetter : 
+class itemgetter :
     def __init__(self, item, *items):   #*item is a tuple, you do not need to assign it.
         if not items:
             def func(obj):     # you can define a function in a function.
@@ -17,7 +17,7 @@ class itemgetter :
 
     def __call__(self, obj) :
         return self._func(obj)
-        
+
 rows = [
     {'fname': 'Brian', 'lname': 'Jones', 'uid': 1003},
     {'fname': 'David', 'lname': 'Beazley', 'uid': 1002},
