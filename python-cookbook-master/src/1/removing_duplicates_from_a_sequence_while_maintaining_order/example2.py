@@ -23,4 +23,5 @@ if __name__ == '__main__':
         {'x': 10, 'y': 15}
         ]
     print a
+    # 不要使用for/in的方式输出一个iterable对象
     print list(dedupe(a, key=lambda a: (a['x'], a['y'])))

@@ -3,7 +3,7 @@
 a = [1, 5, 2, 1, 9, 1, 5, 10]
 b = list()
 
-#by doing this, you have not order.
+# 这个的时间复杂度太高了
 for x in a:
     if x not in b:
         b.append(x)
@@ -17,4 +17,4 @@ def unique(iterable):
             yield elmt
         myset.add(elmt)
 
-print( list(unique(a)) )
+print(list(unique(a)))

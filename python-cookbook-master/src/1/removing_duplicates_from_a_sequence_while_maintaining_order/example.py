@@ -8,7 +8,7 @@
 # items是可遍历的对象
 # 因为item需要被放到set当中，所以它必须是hashable的
 def dedupe(items):
-    seen = set()    # the element must can be hashed
+    seen = set()    # the element must can be hashed, 这是它的缺点
     for item in items:
         if item not in seen:
             yield item

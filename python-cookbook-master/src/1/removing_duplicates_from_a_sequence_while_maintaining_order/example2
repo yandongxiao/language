@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
 #a = [1, 5, 2, 1, 9, 1, 5, 10]
-a = [ 
+a = [
     {'x': 2, 'y': 3},
     {'x': 1, 'y': 4},
     {'x': 2, 'y': 3},
@@ -9,21 +9,14 @@ a = [
     {'x': 10, 'y': 15}
 ]
 
-b = list()
 
-#by doing this, you have not order.
-for x in a:
-    if x not in b:
-        b.append(x)
-print(a)
-print(b)
-
-def unique(iterable, key):
-    myset = set()
-    for elmt in iterable:
-        val = elmt if key is None else key(elmt)
-        if val not in myset:
+def queue(items, key):
+    d = set()
+    for item in items:
+        elmt = item if key is None else key(item)
+        if elmt not in d:
             yield elmt
-        myset.add(val)
+            d.add(elmt)
 
-print( list(unique(a, key=lambda a: (a['x'], a['y'])) ) )
+print a
+print list(queue(a, key=lambda s: (s['x'], s['y'])))
