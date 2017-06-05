@@ -1,4 +1,6 @@
 #! /usr/bin/python
+# encoding: utf-8
+
 rows = [
     {'address': '5412 N CLARK', 'date': '07/01/2012'},
     {'address': '5148 N CLARK', 'date': '07/04/2012'},
