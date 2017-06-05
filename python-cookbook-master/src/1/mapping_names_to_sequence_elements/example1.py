@@ -11,7 +11,7 @@ def compute_cost(records):
     total = 0.0
     for rec in records:
         # 实例化
-        s = Stock(*rec)     # the parameter is a tuple.
+        s = Stock(*rec)     # 注意*号的使用
         # 尽管它看起来像是一个类实例，但是它跟元组类型是可交换的
         # 不像字典那样，一个命名元组是不可更改的
         # 更改方法如下s = s._replace(price=75)
