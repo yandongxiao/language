@@ -11,6 +11,7 @@ class PriorityQueue:
         self._index = 0
 
     def push(self, item, priority):
+        # heapq 本身并不支持key关键字，需要借助元组的特殊比较方式来实现
         heapq.heappush(self._queue, (-priority, self._index, item))
         self._index += 1
 
