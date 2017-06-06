@@ -16,6 +16,7 @@ class Node(object):
         return self
 
     # NOTE: it is next not __next__
+    # 在python3当中是 __next__
     def next(self):
         try:
             v = self.buffer[self.idx]
@@ -33,12 +34,12 @@ root.push(2)
 root.push(3)
 
 for elmt in root:
-    print elmt
+    print(elmt)
 
 for elmt in root:
-    print elmt
+    print(elmt)
 
-print next(root, None)
-print next(root, None)
-print next(root, None)
-print next(root, None)  # 不抛出异常的方法
+print(next(root, None))
+print(next(root, None))
+print(next(root, None))
+print(next(root, None))  # 不抛出异常的方法
