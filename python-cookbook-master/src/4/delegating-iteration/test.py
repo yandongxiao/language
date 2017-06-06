@@ -10,6 +10,7 @@ class Node(object):
         self.buffer.append(elmt)
 
     def __iter__(self):
+        # 将迭代操作代理到内部的容器上面
         return iter(self.buffer)
 
 
