@@ -20,5 +20,3 @@ for month, day, year in datepat.findall(text):
 # (c) Iterative search
 for m in datepat.finditer(text):
     print(m.groups())
-
-
