@@ -1,9 +1,12 @@
+#! /usr/bin/env python3
+
 from socket import socket, AF_INET, SOCK_STREAM
 
 def echo_client(client_sock, addr):
     print("Got connection from", addr)
 
     # Make text-mode file wrappers for socket reading/writing
+    # 在Unix系统上将文件描述符封装为文件对象的方法
     client_in = open(client_sock.fileno(), 'rt', encoding='latin-1', closefd=False)
     client_out = open(client_sock.fileno(), 'wt', encoding='latin-1', closefd=False)
 

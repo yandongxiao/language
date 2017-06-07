@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 # Example of iterating of fixed-size records
 #
 # The file 'data.bin' contains 32-byte fixed size records
@@ -10,4 +12,3 @@ with open('data.bin', 'rb') as f:
     records = iter(partial(f.read, RECORD_SIZE), b'')
     for r in records:
         print(r)
-
