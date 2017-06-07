@@ -1,11 +1,20 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
 # Example of flattening a nested sequence using subgenerators
 
+# 1. it is Iterable not Iterator
+# 2. it is in collections module not in itertools module
 from collections import Iterable
 
 def flatten(items, ignore_types=(str, bytes)):
     for x in items:
+        # isinstance做类型检查
         if isinstance(x, Iterable) and not isinstance(x, ignore_types):
-            yield from flatten(x)
+            # 注意yield from的等价形式
+            for i in flatten(x):
+                yield i
+            # yield from flatten(x)
         else:
             yield x
 
