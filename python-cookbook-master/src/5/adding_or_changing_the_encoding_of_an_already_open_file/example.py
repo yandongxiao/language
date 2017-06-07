@@ -4,7 +4,10 @@
 import urllib.request
 import io
 
+# 以二进制形式打开的类文件对象
 u = urllib.request.urlopen('http://www.python.org')
-f = io.TextIOWrapper(u, encoding='utf-8')
+
+# 第一个参数是类文件对象
+f = io.TextIOWrapper(u, encoding='utf-8')   # 封装一个encoding和decoding
 text = f.read()
 print(text)
