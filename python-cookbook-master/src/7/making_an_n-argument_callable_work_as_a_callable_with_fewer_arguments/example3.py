@@ -1,10 +1,12 @@
+#! /usr/bin/env python3
+
 # Using partial to supply extra arguments to a class constructor
 from socketserver import StreamRequestHandler, TCPServer
 
 class EchoHandler(StreamRequestHandler):
     # ack is added keyword-only argument. *args, **kwargs are
     # any normal parameters supplied (which are passed on)
-    def __init__(self, *args, ack, **kwargs):
+    def __init__(self, *args, ack, **kwargs):   # 注意ack的位置
         self.ack = ack
         super().__init__(*args, **kwargs)
     def handle(self):

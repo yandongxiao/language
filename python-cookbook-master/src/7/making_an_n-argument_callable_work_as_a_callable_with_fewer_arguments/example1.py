@@ -1,7 +1,8 @@
 #! /usr/bin/python
+# encoding: utf-8
 
 # Example of using partial() with sorting a list of (x,y) coordinates
-
+# 很多时候 partial() 能实现的效果，lambda表达式也能实现。
 from functools import partial
 
 points = [(7,7), (1, 2), (3, 4), (5, 6), (7, 7) ]
