@@ -1,7 +1,10 @@
-#! /usr/bin/python
+#! /usr/bin/env python3
+#! encoding: utf-8
+
 # examples of keyword-only argument functions
 
 # A simple keyword-only argument
+# 这种形式的函数定义只属于python3
 def recv(maxsize, *, block=True):
     print(maxsize, block)
 
