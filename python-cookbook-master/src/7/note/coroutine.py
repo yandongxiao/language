@@ -19,4 +19,4 @@ for line in open("lambda.py"):
     # 这里grep确实没有什么必要实现成协程，实现为函数即可
     search.send(line)
 
-search.close()
+search.close()  # NOTE: close it!!
