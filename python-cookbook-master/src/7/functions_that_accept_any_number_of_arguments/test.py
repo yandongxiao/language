@@ -12,7 +12,6 @@ def a(x, *args, y):
 def b(x, *args, y, **kwargs):
         pass
 
-
 # 接收任意数量的参数
 # NOTE: rest 是元组，不是列表
 def agv(first, *rest):
