@@ -13,7 +13,7 @@ print(argv(1, 2, 3, 4, bottom=20))
 
 
 # 这里虽然有*
-# 但是它不消费任何实参
+# 但是它不消费任何实参, 所以 recv(1,2)抛出了异常
 def recv(first, *, block = False):
     print(first, block)
 
