@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 # Descriptor for a type-checked attribute
 class Typed:
     def __init__(self, name, expected_type):
@@ -11,6 +14,7 @@ class Typed:
             return instance.__dict__[self.name]
 
     def __set__(self, instance, value):
+        # 为什么不需要判断instance是否为空
         if not isinstance(value, self.expected_type):
             raise TypeError('Expected ' + str(self.expected_type))
         instance.__dict__[self.name] = value
@@ -19,6 +23,7 @@ class Typed:
         del instance.__dict__[self.name]
 
 # Class decorator that applies it to selected attributes
+# NOTE: 并不需要特殊的关键字
 def typeassert(**kwargs):
     def decorate(cls):
         for name, expected_type in kwargs.items():
@@ -28,6 +33,8 @@ def typeassert(**kwargs):
     return decorate
 
 # Example use
+# dec = typeassert(name=str, shares=int, price=float)
+# Stock = dec(Stock)
 @typeassert(name=str, shares=int, price=float)
 class Stock:
     def __init__(self, name, shares, price):
