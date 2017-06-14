@@ -1,4 +1,7 @@
-class Proxy:
+#! /usr/bin/env python3
+# encoding: utf-8
+
+class Proxy(object):
     def __init__(self, obj):
         self._obj = obj
 
@@ -27,5 +30,7 @@ if __name__ == '__main__':
     p.x = 37
     print('Should be 37:', p.x)
     print('Should be 37:', a.x)
+    p._a = 100
+    print(p._a)
 
-    
+

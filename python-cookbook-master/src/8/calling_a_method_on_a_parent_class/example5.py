@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 # Tricky initialization problem involving multiple inheritance.
 # Uses super()
 
@@ -17,6 +20,8 @@ class B(Base):
 
 class C(A,B):
     def __init__(self):
+        # 虽然是多重继承, 但是只需要执行super().__initj()即可
+        # NOTE: 如果A和B的__init__方法有参数，且不相同时怎么办？
         super().__init__()     # Only one call to super() here
         print('C.__init__')
 
