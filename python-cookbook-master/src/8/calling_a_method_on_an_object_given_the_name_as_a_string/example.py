@@ -34,6 +34,8 @@ points = [
 ]
 
 # Sort by distance from origin (0, 0)
+# NOTE: 让method的调用看起来像是一个函数调用
+# NOTE: 还有partial函数的功能
 points.sort(key=operator.methodcaller('distance', 0, 0))
 for p in points:
     print(p)
