@@ -4,6 +4,8 @@
 # 这又是python3的新特性, 貌似python2应该也是支持的
 # Example of managed attributes via properties
 # NOTE: 只有当你确实需要对attribute执行其他额外的操作的时候才应该使用到property。
+# 使用property的常见方式
+
 class Person:
     # 底层存储的对象名称实际上是_first_name
     # self.first_name = first_name实际上是为了触发setter函数的执行

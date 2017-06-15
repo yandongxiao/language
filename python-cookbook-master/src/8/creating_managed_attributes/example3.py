@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+# property 装饰器的作用
+# 使得一个函数的访问方式变成接口形式
+
 import math
 class Circle:
     def __init__(self, radius):

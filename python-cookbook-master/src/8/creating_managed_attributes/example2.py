@@ -3,6 +3,8 @@
 
 # 这又是python3的新特性
 # Example of managed attributes via properties
+# 装饰器的另外一种使用形式
+# 主动调用property
 
 class Person:
     def __init__(self, first_name):
