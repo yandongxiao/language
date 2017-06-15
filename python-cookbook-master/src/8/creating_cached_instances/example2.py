@@ -10,11 +10,12 @@ class CachedSpamManager:
         else:
             s = self._cache[name]
         return s
-      
+
 class Spam:
     def __init__(self, name):
         self.name = name
 
+# as a class attribute
 Spam.manager = CachedSpamManager()
 
 def get_spam(name):
