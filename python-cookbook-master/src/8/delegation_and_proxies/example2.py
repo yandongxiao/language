@@ -1,6 +1,10 @@
+#! /usr/bin/env python3
+#encoding: utf-8
+
 # A proxy class that wraps around another object, but
 # exposes its public attributes
-
+# 一个通常的约定是只代理那些不以下划线 _ 开头的属性
+# (代理类只暴露被代理类的公共属性)
 class Proxy:
     def __init__(self, obj):
         self._obj = obj

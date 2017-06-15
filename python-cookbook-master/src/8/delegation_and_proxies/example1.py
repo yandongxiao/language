@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
 class A:
     def spam(self, x):
         print('A.spam')
@@ -7,12 +10,12 @@ class A:
 
 class B:
     def __init__(self):
-        self._a = A()   
+        self._a = A()
 
     def bar(self):
         print('B.bar')
 
-    # Expose all of the methods defined on class A   
+    # 只有当属性不存在时，该方法才会被调用
     def __getattr__(self, name):
         return getattr(self._a, name)
 
