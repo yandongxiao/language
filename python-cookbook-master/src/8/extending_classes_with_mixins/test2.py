@@ -1,10 +1,7 @@
-#! /usr/bin/env python3
-#encoding: utf-8
+#!/usr/bin/env python3
+# encoding: utf-8
 
-# Class decorator alternative to mixins
-# 采用装饰器的方法对类方法的功能进行扩充
-
-def LoggedMapping(cls):
+def sample1(cls):
     cls_getitem = cls.__getitem__
     cls_setitem = cls.__setitem__
     cls_delitem = cls.__delitem__
@@ -13,9 +10,11 @@ def LoggedMapping(cls):
         print('Getting %s' % key)
         return cls_getitem(self, key)
 
-    def __setitem__(self, key, value):
-        print('Setting %s = %r' % (key, value))
-        return cls_setitem(self, key, value)
+    def __setitem__(self, key, val):
+        print('Setting %s = %r' % (key, val))
+        if not isinstance(val, str):
+            raise TypeError("except a string val")
+        cls_setitem(self, key, val)
 
     def __delitem__(self, key):
         print('Deleting %s' % key)
@@ -26,11 +25,15 @@ def LoggedMapping(cls):
     cls.__delitem__ = __delitem__
     return cls
 
-@LoggedMapping
+@sample1
 class LoggedDict(dict):
     pass
 
 d = LoggedDict()
-d['x'] = 23
+d['x'] = "23"
 print(d['x'])
-del d['x']
+try:
+    d['x'] = 100
+except TypeError as e:
+    print(e)
+print(d['x'])
