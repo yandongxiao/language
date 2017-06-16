@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 # Defining a simple abstract base class
 
 from abc import ABCMeta, abstractmethod
@@ -11,6 +14,7 @@ class IStream(metaclass=ABCMeta):
         pass
 
 # Example implementation
+# 一种方法是主动继承抽象基类
 class SocketStream(IStream):
     def read(self, maxbytes=-1):
         print('reading')
@@ -37,7 +41,7 @@ if __name__ == '__main__':
     a.write('data')
 
     # Passing to type-check function
-    serialize(None, a)
+    serialize(None, a)      #传递一个抽象基类的子类
 
     # Attempt to pass a file-like object to serialize (fails)
     import sys
@@ -46,11 +50,11 @@ if __name__ == '__main__':
         serialize(None, sys.stdout)
     except TypeError as e:
         print(e)
-
+    print("==================")
+    # 第二种方法是主动注册
     # Register file streams and retry
     import io
-    IStream.register(io.IOBase)
-
+    IStream.register(io.IOBase) # 将
     serialize(None, sys.stdout)
 
 
