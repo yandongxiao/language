@@ -1,3 +1,9 @@
+#! /usr/bin/env python3
+#encoding: utf-8
+
+# 我们希望使用所有的比较操作符，但是又不想定义所有相对应的方法
+# 借助于total_ordering修饰符即可, 注意它修饰的可是一个类对象，并非是方法
+
 from functools import total_ordering
 class Room:
     def __init__(self, name, length, width):
@@ -21,15 +27,15 @@ class House:
         self.rooms.append(room)
 
     def __str__(self):
-        return '{}: {} square foot {}'.format(self.name, 
-                                              self.living_space_footage, 
+        return '{}: {} square foot {}'.format(self.name,
+                                              self.living_space_footage,
                                               self.style)
 
     def __eq__(self, other):
         return self.living_space_footage == other.living_space_footage
 
     def __lt__(self, other):
-        return self.living_space_footage < other.living_space_footage 
+        return self.living_space_footage < other.living_space_footage
 
 
 
