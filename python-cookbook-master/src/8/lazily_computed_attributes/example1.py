@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 class lazyproperty:
     def __init__(self, func):
         self.func = func
@@ -6,15 +9,20 @@ class lazyproperty:
             return self
         else:
             value = self.func(instance)
+            # 设置实例的同名属性
+            # 实例的属性要比类对象的属性优先级更高, 所以下次缓存起来了
             setattr(instance, self.func.__name__, value)
             return value
-        
+
 if __name__ == '__main__':
     import math
     class Circle:
         def __init__(self, radius):
             self.radius = radius
 
+        # 修饰符放在方法上也是可以的
+        # area = lazyproperty(area)
+        # NOTE: 以上调用正好符合了描述符的应用场景
         @lazyproperty
         def area(self):
             print('Computing area')
