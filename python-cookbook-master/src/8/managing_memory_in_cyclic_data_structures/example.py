@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 import weakref
 
 class Node:
@@ -10,9 +12,10 @@ class Node:
         return 'Node({!r:})'.format(self.value)
 
     # property that manages the parent as a weak-reference
+    # 指向parrent的对象是一个弱引用
     @property
     def parent(self):
-        return self._parent if self._parent is None else self._parent()
+        return self._parent if self._parent is None else self._parent() # 像函数一样使用弱引用
 
     @parent.setter
     def parent(self, node):
@@ -32,4 +35,3 @@ if __name__ == '__main__':
     print(c1.parent)
     del root
     print(c1.parent)
-    
