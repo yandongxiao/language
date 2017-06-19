@@ -1,3 +1,7 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
+# collections 中定义了很多的容器基类，当你希望自定义自己的容器时，应该考虑从colelctions的某个基类中继承
 # Example of a custom container
 
 import collections
