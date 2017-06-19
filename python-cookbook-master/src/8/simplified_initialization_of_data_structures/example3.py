@@ -1,11 +1,15 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 class Structure:
     # Class variable that specifies expected fields
     _fields= []
     def __init__(self, *args, **kwargs):
         if len(args) != len(self._fields):
             raise TypeError('Expected {} arguments'.format(len(self._fields)))
-       
+
         # Set the arguments
+        # NOTE: 搞清楚setattr和self.__dict__.update(zip(self._fields,args))的区别
         for name, value in zip(self._fields, args):
             setattr(self, name, value)
 
@@ -15,7 +19,7 @@ class Structure:
             setattr(self, name, kwargs.pop(name))
         if kwargs:
             raise TypeError('Duplicate values for {}'.format(','.join(kwargs)))
-        
+
 # Example use
 if __name__ == '__main__':
     class Stock(Structure):

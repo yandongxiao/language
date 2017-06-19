@@ -1,3 +1,9 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
+# 如果有大量的类对象作为一个数据结构使用，即这些类对象只有一个__init__方法，
+# 可以尝试使用下面的方法进行整合
+
 class Structure:
     # Class variable that specifies expected fields
     _fields= []
@@ -8,7 +14,7 @@ class Structure:
         # Set the arguments
         for name, value in zip(self._fields, args):
             setattr(self, name, value)
-        
+
 # Example class definitions
 if __name__ == '__main__':
     class Stock(Structure):

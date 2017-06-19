@@ -15,7 +15,7 @@ class Structure:
         # Check for any remaining unknown arguments
         if kwargs:
             raise TypeError('Invalid argument(s): {}'.format(','.join(kwargs)))
-        
+
 # Example use
 if __name__ == '__main__':
     class Stock(Structure):
