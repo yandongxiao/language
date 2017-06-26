@@ -1,8 +1,10 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
-# Example of managed attributes via properties
-# 在子类中扩展一个property可能会引起很多不易察觉的问题， 因为一个property其实是 getter、setter 和 deleter 方法的集合
+# 在子类中扩展一个property可能会引起很多不易察觉的问题，因为一个property其实是 getter、setter 和 deleter 方法的集合
+# 只修改其中一个方法，装饰符变成了Person.name.setter.
+# 我们知道property的魔法是基于描述符的，get,set,del方法都是在描述符的实例对象当中. 描述符的实例对象也是类对象的一个属性
+# 如果只修改一个方法，需要确保直接修改的是描述符的实例对象
 
 class Person:
     def __init__(self, name):
