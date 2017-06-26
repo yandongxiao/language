@@ -8,7 +8,7 @@ class ListLike:
         return getattr(self._items, name)
 
     # Added special methods to support certain list operations
-    # __getattr__对于双下划线开始和结尾的方法是不能用的，需要一个个去重定义
+    # 只有定义了下面的类对象的方法，才能使用对应的函数，如len，下标访问
     def __len__(self):
         return len(self._items)
     def __getitem__(self, index):
