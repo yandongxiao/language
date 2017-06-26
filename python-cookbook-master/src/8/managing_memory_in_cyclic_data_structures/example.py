@@ -25,6 +25,7 @@ class Node:
         self.children.append(child)
         child.parent = self
 
+
 if __name__ == '__main__':
     root = Node('parent')
     c1 = Node('c1')
