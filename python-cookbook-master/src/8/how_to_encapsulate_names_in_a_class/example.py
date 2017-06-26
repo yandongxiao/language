@@ -24,8 +24,8 @@ class B:
         self.__private_method()
 
 class C(B):
-    def __init__(self):         # _C__init__
-        super().__init__()      # _B__init__
+    def __init__(self):         # __init__
+        super().__init__()      # __init__
         self.__private = 1      # Does not override B.__private
     def __private_method(self): # Does not override B.__private_method()
         print('C.__private_method')
