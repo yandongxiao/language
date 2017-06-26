@@ -17,13 +17,13 @@ def get_spam(name):
     if name not in _spam_cache:
         s = Spam(name)
         assert sys.getrefcount(s) == 2
-        _spam_cache[name] = s   # 这里返回一个强引用
+        _spam_cache[name] = s
         assert sys.getrefcount(s) == 2
     else:
         assert sys.getrefcount(_spam_cache[name]) == 2
         s = _spam_cache[name]       # 注意这里返回的是一个强引用
         assert sys.getrefcount(_spam_cache[name]) == 3
-    return s
+    return s    # 这里返回一个强引用
 
 import sys
 if __name__ == '__main__':

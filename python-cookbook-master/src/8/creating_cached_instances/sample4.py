@@ -14,18 +14,13 @@ def get_sample(name):
     # val = wvd.get(name, None)
     #if val is None:
     if name not in wvd:
-        # 下面的错误在于
-        # 由于是弱引用sample(name)会被垃圾回收
-        # return语句返回是产生KeyError
-        # wvd[name] = sample(name)
-        # return wvd[name]
 
         s = sample(name)
         wvd[name] = s
         return s
     else:
         s = wvd[name]
-        return s
+        return s    # 强引用
 
 if __name__ == "__main__":
     v1 = get_sample("foo")

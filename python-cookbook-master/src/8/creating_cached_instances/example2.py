@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
 import weakref
 
 class CachedSpamManager:
@@ -5,11 +8,17 @@ class CachedSpamManager:
         self._cache = weakref.WeakValueDictionary()
     def get_spam(self, name):
         if name not in self._cache:
+            # 下面的错误在于
+            # 由于是弱引用Spam(name)会被垃圾回收
+            # return语句返回是产生KeyError
+            # self._cache[name] = Spam(name)
+            # return self._cache[name]
+
             s = Spam(name)
             self._cache[name] = s
         else:
             s = self._cache[name]
-        return s
+        return s    # 强引用
 
 class Spam:
     def __init__(self, name):
@@ -17,7 +26,6 @@ class Spam:
 
 # as a class attribute
 Spam.manager = CachedSpamManager()
-
 def get_spam(name):
     return Spam.manager.get_spam(name)
 
