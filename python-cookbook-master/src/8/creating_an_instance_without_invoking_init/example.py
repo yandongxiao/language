@@ -20,7 +20,7 @@ d = Date.__new__(Date)
 print(d)
 print(hasattr(d,'year'))
 
-data = { 
+data = {
     'year' : 2012,
     'month' : 8,
     'day' : 29
