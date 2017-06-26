@@ -41,21 +41,20 @@ if __name__ == '__main__':
     a.write('data')
 
     # Passing to type-check function
-    serialize(None, a)      #传递一个抽象基类的子类
+    serialize(None, a)      # 传递一个抽象基类的子类
 
     # Attempt to pass a file-like object to serialize (fails)
     import sys
-
     try:
         serialize(None, sys.stdout)
     except TypeError as e:
         print(e)
     print("==================")
+
     # 第二种方法是主动注册
     # Register file streams and retry
+    # 利用register方法将类对象进行归类时，不需要类对象实现任何特殊方法
+    # 归类的目的是为了利用isinstance 和 issubclass
     import io
-    IStream.register(io.IOBase) # 将
+    IStream.register(io.IOBase)
     serialize(None, sys.stdout)
-
-
-
