@@ -12,4 +12,6 @@ class B(A):
 
 if __name__ == '__main__':
     b = B()
-    print(b.x, b.y)     # 可以直接访问的原因在于super().__init__()的执行
+    # 可以直接访问的原因在于super().__init__()的执行
+    # 根本原因在于，实例对象b中存在属性x
+    print(b.x, b.y)

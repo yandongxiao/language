@@ -21,16 +21,17 @@ if __name__ == '__main__':
         def __init__(self, x):
             self.x = x
         def spam(self):
-            print('A.spam')
+            return 'A.spam'
 
     a = A(42)
     p = Proxy(a)
-    print(p.x)
-    print(p.spam())
+    assert p.x == 42
+    assert p.spam() == "A.spam"
+
     p.x = 37
-    print('Should be 37:', p.x)
-    print('Should be 37:', a.x)
+    assert p.x == 37
+    assert a.x == 37
+
     p._a = 100
-    print(p._a)
-
-
+    # _a 是实例对象p的一个属性，不会调用__getattr__方法
+    assert p._a == 100
