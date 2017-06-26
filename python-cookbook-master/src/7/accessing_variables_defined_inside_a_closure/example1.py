@@ -3,23 +3,23 @@
 
 # Example of accessing variables inside a closure
 
-# 闭包的内部变量对于外界来讲是完全隐藏的
-# 例如下面的闭包func使用了内部变量n
-# 为闭包函数func绑定访问函数，使得外部能够访问和修改n
 def sample():
+    # 闭包访问的变量n，称为内部变量
     n = 0
     def set_n(num):
         # 1. 如果变量在函数内部被定义或赋值，那么它就是一个局部变量
-        # 2. 这是python3的特性, python2只支持global值
+        # 2. nonlocal是python3的特性, python2只支持global值
         nonlocal n
         n = num
 
     def get_n():
         return n
 
+    # 它被成为闭包
     def func():
         print("n=", n)
 
+    # 函数也是对象，可以有自己的属性和方法
     func.set_n = set_n
     func.get_n = get_n
     return func

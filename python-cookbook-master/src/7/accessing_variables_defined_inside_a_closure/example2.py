@@ -3,9 +3,9 @@
 # Example of faking classes with a closure
 
 # 使用闭包来模拟类
+# NOTE: python中特殊方法虽然是以双下划线开头的，但是python不会对它的名称进行变形
+# 前后都有双下划线的名称，python不会对它变形
 
-# 下面的代码有点晦涩难懂
-# 也利用了类的很多高级特性
 import sys
 class ClosureInstance:
     def __init__(self, locals=None):
@@ -14,13 +14,15 @@ class ClosureInstance:
             locals = sys._getframe(1).f_locals
 
         # Update instance dictionary with callables
-        # __dict__ is special.  if no items, return the key list
+        # __dict__ 是实例对象的属性和方法的字典，我们可以通过点运算符，del来添加和删除属性
+        # 也可以直接操作__dict__字典
         self.__dict__.update((key,value) for key, value in locals.items()
                              if callable(value) )   #( ) is a generator
 
     # Redirect special methods
-    def __len__(self):  #this is special.
-        print(self.__dict__)
+    # 之所以要重定向，是因为Stake当中的__len__作为了实例的一个属性而存在
+    # len() 调用的是类对象的方法
+    def __len__(self):
         return self.__dict__['__len__']()
 
 # Example use
@@ -40,7 +42,6 @@ def Stack():
 
 if __name__ == '__main__':
     s = Stack()
-    print(s)
     s.push(10)
     s.push(20)
     s.push('Hello')
