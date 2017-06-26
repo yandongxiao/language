@@ -14,6 +14,7 @@ class Date:
     @classmethod
     def today(cls):
         t = time.localtime()
+        # __new__是一个静态方法
         d = cls.__new__(cls)
         d.year = t.tm_year
         d.month = t.tm_mon
