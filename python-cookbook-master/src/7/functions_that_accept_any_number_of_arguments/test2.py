@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # encoding: utf-8
 
-# NOTE: rest 是一个列表
+# NOTE: rest 是一个元组
 def avg(first, *rest):
     return float(first+sum(rest)) / (1+len(rest))
 

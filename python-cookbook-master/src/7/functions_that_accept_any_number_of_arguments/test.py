@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # encoding: utf-8
 
 #
@@ -7,18 +7,18 @@
 # 2.  **参数只能出现在最后一个参数。
 # 3. a 和 b 函数后面使用参数y，要求调用者必须使用关键字参数来传递参数
 def a(x, *args, y):
-        pass
+    print(y)
 
 def b(x, *args, y, **kwargs):
-        pass
+    pass
 
 # 接收任意数量的参数
 # NOTE: rest 是元组，不是列表
 def agv(first, *rest):
     return float(first+sum(rest)) / (len(rest)+1)
 
-print agv(1, 2, 3, 4)
-print agv(1)
+print(agv(1, 2, 3, 4))
+print(agv(1))
 
 # 接收任意数量的关键字参数
 # NOTE: 列表推导，看来只要是表达式就可以
