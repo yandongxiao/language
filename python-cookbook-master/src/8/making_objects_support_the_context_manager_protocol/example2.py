@@ -12,7 +12,7 @@ class LazyConnection:
         sock.connect(self.address)
         self.connections.append(sock)
         return sock
-                
+
     def __exit__(self, exc_ty, exc_val, tb):
         self.connections.pop().close()
 
