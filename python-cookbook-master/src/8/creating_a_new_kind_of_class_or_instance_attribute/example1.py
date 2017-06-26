@@ -28,9 +28,6 @@ class Integer:
         del instance.__dict__[self.name]
 
 
-# 默认对属性的访问控制是从对象的字典里面(__dict__)中获取(get), 设置(set)和删除(delete)它
-# 举例来说，a.x 的查找顺序是, a.__dict__['x'] , 然后 type(a).__dict__['x'] , 然后找 type(a) 的父类
-# NOTE: 如果查找到的值是一个描述器, Python就会调用描述器的方法来重写默认的控制行为
 class Point:
     x = Integer('x')
     y = Integer('y')
@@ -53,8 +50,3 @@ if __name__ == '__main__':
         p.x = 2.3   # 一次set操作
     except TypeError as e:
         print(e)
-
-    # NOTE: x的值并没有新的实例的产生而被更改
-    # 请查看Integer类实现
-    Point(4, 5)
-    print(p.x)

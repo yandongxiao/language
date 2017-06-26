@@ -1,6 +1,10 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
+# 装饰器是一个带参数的装饰器
+# 装饰器返回一个修改过的类，为类添加name, shares和price属性
+# Stock当中的self.price=price调用就会触发描述符的调用
+
 # Descriptor for a type-checked attribute
 class Typed:
     def __init__(self, name, expected_type):
