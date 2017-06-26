@@ -110,7 +110,7 @@ if __name__ == '__main__':
     test(s)
 
     print("# --- Class with class decorator")
-    @check_attributes(name=SizedString(size=8), 
+    @check_attributes(name=SizedString(size=8),
                       shares=UnsignedInteger,
                       price=UnsignedFloat)
     class Stock:
@@ -134,4 +134,3 @@ if __name__ == '__main__':
 
     s = Stock('ACME',50,91.1)
     test(s)
-        
