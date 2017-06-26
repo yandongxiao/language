@@ -15,5 +15,3 @@ class Date:
             code = 'ymd'
         fmt = _formats[code]
         return fmt.format(d=self)
-
-        
