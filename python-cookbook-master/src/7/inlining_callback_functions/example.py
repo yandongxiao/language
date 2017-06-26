@@ -2,7 +2,9 @@
 #encoding: utf-8
 
 # Callback functions can be inlined into a function using generators and coroutines.
-# 利用Async 和 inlined_async 构建了通过yield来传递callback的环境
+# 普通模式下，一定有大量的apply_async调用，伴随着大量的回调函数，python文件的可读性被破坏。
+# 利用生产者和消费者模式，构建generators and coroutines，使得回调函数的处理可以集中到一块。甚至
+# 回调函数无需是函数。
 
 # Sample function to illustrate callback control flow
 def apply_async(func, args, *, callback):
@@ -24,7 +26,9 @@ class Async:
 def inlined_async(func):
     @wraps(func)
     def wrapper(*args):
-        f = func(*args)             # 执行test函数, 返回test协程
+        # 执行test函数, 返回生成器对象. 注意是装饰器拿到了生成器对象
+        # 装饰器作为了消费者
+        f = func(*args)
         result_queue = Queue()
         result_queue.put(None)
         while True:
@@ -32,11 +36,10 @@ def inlined_async(func):
             result = result_queue.get()
             try:
                 # NOTE:
-                # 给协程test发送数据, 并等待接收Async实例
+                # 给test返回结果, 并等待接收Async实例
                 # 第一次发送给协程的数据是None, 目的只是为了接收数据
                 a = f.send(result)
-                # 根据test返回的指令，执行。
-                # 并将结果放到Queue当中准备返回
+                # 计算结果
                 apply_async(a.func, a.args, callback=result_queue.put)
             except StopIteration:   # 需要主动捕获StopIteration异常
                 break
@@ -48,8 +51,8 @@ def add(x, y):
 
 # 等价于
 # test = inlined_async(test)
-@inlined_async      #very strange.
-def test():         # test既是一个生成器，也是一个协程
+@inlined_async
+def test():         # 被封装的test函数变成了生产者
     r = yield Async(add, (2, 3))
     print(r)
     r = yield Async(add, ('hello', 'world'))
@@ -65,6 +68,10 @@ if __name__ == '__main__':
     print('# --- Simple test')
     test()
 
+    # 采用多进程的方式，进程池的大小和当前系统有关系
+    # 当前进程运行生产者和消费者函数，即test和inlined_async
+    # inlined_async将自己的任务派发给子进程去处理
+    # from queue import Queue 看来这个Queue是进程安全的
     print('# --- Multiprocessing test')
     import multiprocessing
     pool = multiprocessing.Pool()

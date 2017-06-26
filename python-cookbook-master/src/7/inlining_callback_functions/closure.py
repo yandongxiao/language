@@ -11,18 +11,20 @@ def test():
 
 
 # 方法1
+# send发送给当前yield，下一个yield返回的内容被send接收。
+# NOTE：不是同一个yield哟
 t = test()
 v = t.send(None)    # 接收1
-print(v)
+assert v==1
 v = t.send("hello") # 发送"hello", 并接收2
-print(v)
+assert v==2
 
 # 方法2
 t = test()
 v = t.next()
-print(v)
+assert v == 1
 v = t.send("hello")
-print v
+assert v==2
 
 try:
     t.send("world")     # 最后一次仅仅是发送操作就行
