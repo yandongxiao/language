@@ -33,3 +33,6 @@ print('sorted prices:')
 prices_sorted = sorted(zip(prices.values(), prices.keys()))
 for price, name in prices_sorted:   # seq接收数据的方法
     print('    ', name, price)
+
+# 这里的关键问题是key是变化的
+# print min(prices, key=lambda p: p['values'])
