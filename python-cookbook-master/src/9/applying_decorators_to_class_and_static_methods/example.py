@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 import time
 from functools import wraps
 
@@ -13,6 +16,7 @@ def timethis(func):
     return wrapper
 
 # Class illustrating application of the decorator to different kinds of methods
+# 由于装饰器timethis是一个通用接口的函数，所以可以应用到所有的方法
 class Spam:
     @timethis
     def instance_method(self, n):
