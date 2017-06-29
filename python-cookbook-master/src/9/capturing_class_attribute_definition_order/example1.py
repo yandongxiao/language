@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 # Example of capturing class definition order
 
 from collections import OrderedDict
@@ -23,9 +26,12 @@ class String(Typed):
     _expected_type = str
 
 # Metaclass that uses an OrderedDict for class body
+# 继承自type的元类OrderedMeta
+# bases: 表明了类对象的基类
+# clsdict 是类对象的属性
 class OrderedMeta(type):
     def __new__(cls, clsname, bases, clsdict):
-        d = dict(clsdict)
+        d = dict(clsdict)   # 传递进来的clsdict是一个OrderedDict实例对象，所以要该
         order = []
         for name, value in clsdict.items():
             if isinstance(value, Typed):
@@ -33,6 +39,8 @@ class OrderedMeta(type):
                 order.append(name)
         d['_order'] = order
         return type.__new__(cls, clsname, bases, d)
+
+    # 对比__new__的参数可知，返回的是
 
     @classmethod
     def __prepare__(cls, clsname, bases):
