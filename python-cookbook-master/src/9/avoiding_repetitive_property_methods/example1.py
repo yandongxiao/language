@@ -1,3 +1,8 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
+# 特性对象通过property装饰器创建
+# 通过函数和特性，返回一个描述符
 def typed_property(name, expected_type):
     storage_name = '_' + name
 
@@ -10,6 +15,7 @@ def typed_property(name, expected_type):
         if not isinstance(value, expected_type):
             raise TypeError('{} must be a {}'.format(name, expected_type))
         setattr(self, storage_name, value)
+
     return prop
 
 # Example use
