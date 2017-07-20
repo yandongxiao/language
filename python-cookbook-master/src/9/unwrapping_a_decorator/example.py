@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 # Example of unwrapping a decorator
 
 from functools import wraps
@@ -16,6 +19,8 @@ def decorator2(func):
         return func(*args, **kwargs)
     return wrapper
 
+# 注意先执行decorator1的print语句
+# 因为print语句在func之前
 @decorator1
 @decorator2
 def add(x, y):
@@ -25,4 +30,5 @@ def add(x, y):
 print(add(2,3))
 
 # Calling original function
-print(add.__wrapped__(2,3))
+# __wrapped__特殊方法只在python3当中才有
+print(add.__wrapped__.__wrapped__(2, 3))

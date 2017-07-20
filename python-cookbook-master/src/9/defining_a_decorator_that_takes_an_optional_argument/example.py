@@ -1,6 +1,10 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 from functools import wraps, partial
 import logging
 
+# 选项参数都已经有了默认参数
 def logged(func=None, *, level=logging.DEBUG, name=None, message=None):
     if func is None:
         return partial(logged, level=level, name=name, message=message)
@@ -15,11 +19,14 @@ def logged(func=None, *, level=logging.DEBUG, name=None, message=None):
     return wrapper
 
 # Example use
-@logged
+@logged     # func is not None
 def add(x, y):
     return x + y
 
-@logged()
+# func is None
+# logged = partial(logged, level=level, name=name, message=message)
+# sub = logged(sub)
+@logged()       # 支持这种形式后，解决编程一致性问题
 def sub(x, y):
     return x - y
 

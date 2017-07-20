@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 # Example of a metaclass that takes optional arguments
 
 class MyMeta(type):
@@ -11,7 +14,7 @@ class MyMeta(type):
     def __new__(cls, name, bases, ns, *, debug=False, synchronize=False):
         # Custom processing
         return super().__new__(cls, name, bases, ns)
-        
+
     def __init__(self, name, bases, ns, *, debug=False, synchronize=False):
         # Custom processing
         super().__init__(name, bases, ns)
@@ -26,5 +29,5 @@ class B(metaclass=MyMeta):
 class C(metaclass=MyMeta, synchronize=True):
     pass
 
-    
+
 

@@ -23,7 +23,7 @@ class multimethod:
             return meth(*args)
         else:
             return self._default(*args)
-        
+
     def __get__(self, instance, cls):
         if instance is not None:
             return types.MethodType(self, instance)

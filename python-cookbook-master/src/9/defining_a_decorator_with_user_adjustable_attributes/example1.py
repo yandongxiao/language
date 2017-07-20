@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 from functools import wraps, partial
 import logging
 
@@ -25,6 +28,9 @@ def logged(level, name=None, message=None):
             return func(*args, **kwargs)
 
         # Attach setter functions
+        # 利用partial函数很高明的实现了，传递参数的功能
+        # 等价于wrapper.set_level = set_level
+        # NOTE: 因为装饰器实际上是设置了wrapper的属性，返回的函数名称并没有改写，所以没有使用@wraps
         @attach_wrapper(wrapper)
         def set_level(newlevel):
             nonlocal level
@@ -39,6 +45,8 @@ def logged(level, name=None, message=None):
     return decorate
 
 # Example use
+# decorate = logged(logging.DEBUG)
+# add = decorate(add)
 @logged(logging.DEBUG)
 def add(x, y):
     return x + y
@@ -60,6 +68,8 @@ def timethis(func):
         return r
     return wrapper
 
+# d1 = logged(logging.DEBUG)
+# timethis = timethis(d1(countdown))
 @timethis
 @logged(logging.DEBUG)
 def countdown(n):
@@ -87,9 +97,15 @@ if __name__ == '__main__':
     print(add(2, 3))
 
     countdown(100000)
+    # 访问函数会在多层装饰器间传播
+    # 按说，装饰器的叠加伴随着对象的更改。不同的对象拥有各自的属性
+    # 这是wraps的魔法，它将被包装函数的属性也“继承”下来了
+    # print(dir(countdown)) or print(dir(countdown2))
+    # 是一种伪继承
     countdown.set_level(logging.CRITICAL)
     countdown(100000)
 
     countdown2(100000)
     countdown2.set_level(logging.CRITICAL)
+    print(dir(countdown2))
     countdown2(100000)
