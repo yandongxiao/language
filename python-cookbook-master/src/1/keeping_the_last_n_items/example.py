@@ -26,3 +26,4 @@ def search2(lines, keyword, maxlen = 3):
 with open("somefile.txt") as lines:
     for line, prevlines in search2(lines, "* to *"):
         print line, prevlines
+
