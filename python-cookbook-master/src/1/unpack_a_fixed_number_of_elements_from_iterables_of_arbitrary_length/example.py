@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#! /usr/bin/env python3
 # example.py
 #
 # Unpacking of tagged tuples of varying sizes

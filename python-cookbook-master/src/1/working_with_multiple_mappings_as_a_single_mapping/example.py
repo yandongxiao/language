@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python3
 # example.py
 #
 # Example of combining dicts into a chainmap
