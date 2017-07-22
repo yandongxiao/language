@@ -1,4 +1,6 @@
-#! /usr/bin/python
+#! /usr/bin/env python
+# encoding: utf-8
+
 # example.py
 #
 # Example of a priority queue
