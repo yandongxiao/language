@@ -1,8 +1,18 @@
-#! /usr/bin/python
+#!/usr/bin/env python
 # encoding: utf-8
 
-# example.py
-# Example of calculating with dictionaries
+# Find min and max price
+# 比较的问题：
+#     https://stackoverflow.com/questions/3270680/how-does-python-compare-string-and-int
+#     1. Objects of different types except numbers are ordered by their type names
+#     2. when you order a numeric and a non-numeric type, the numeric type comes first, 5 < 'foo', 5 < {}
+#     3. When you order two incompatible types where neither is numeric, they are ordered by the alphabetical order of their typenames,
+#        [1, 2] > 'foo'   # 'list' < 'str'
+
+
+# NOTE
+# prices.keys() 和 prices.values() 是两个独立的sequence
+# 但是{ prices.keys()[i] : prices.values()[i] } 就是prices的一个元素
 
 prices = {
    'ACME': 45.23,
@@ -14,25 +24,20 @@ prices = {
    'FB': 10.75
 }
 
-# Find min and max price
-# 比较的问题：
-#     https://stackoverflow.com/questions/3270680/how-does-python-compare-string-and-int
-#     1. Objects of different types except numbers are ordered by their type names
-#     2. when you order a numeric and a non-numeric type, the numeric type comes first, 5 < 'foo', 5 < {}
-#     3. When you order two incompatible types where neither is numeric, they are ordered by the alphabetical order of their typenames,
-#        [1, 2] > 'foo'   # 'list' < 'str'
-#
-# prices.keys() 和 prices.values() 是两个独立的sequence，但是{ prices.keys()[i] : prices.values()[i] } 就是prices的一个元素
-# NOTE: zip() 函数创建的是一个只能访问一次的迭代器。
-min_price = min(zip(prices.values(), prices.keys()))
-max_price = max(zip(prices.values(), prices.keys()))
-print('min price:', min_price)
-print('max price:', max_price)
+# method-1
+print max(prices, key=lambda k: prices[k])
+print min(prices, key=lambda k: prices[k])
+print sorted(prices, key=lambda k: prices[k])
 
-print('sorted prices:')
-prices_sorted = sorted(zip(prices.values(), prices.keys()))
-for price, name in prices_sorted:   # seq接收数据的方法
-    print('    ', name, price)
 
-# 这里的关键问题是key是变化的
-# print min(prices, key=lambda p: p['values'])
+# method-2
+print max(prices.items(), key=lambda item: item[1])
+print min(prices.items(), key=lambda item: item[1])
+print sorted(prices.items(), key=lambda item: item[1])
+
+
+# method-3
+# 排序时比较的对象是一个含有两个元素的元组
+print max(zip(prices.values(), prices.keys()))
+print min(zip(prices.values(), prices.keys()))
+print sorted(zip(prices.values(), prices.keys()))
