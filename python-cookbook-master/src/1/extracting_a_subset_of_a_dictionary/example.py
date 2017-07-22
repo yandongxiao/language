@@ -13,6 +13,7 @@ prices = {
 # Make a dictionary of all prices over 200
 print {key:prices[key] for key in prices if prices[key] > 200}
 print {key:val for key, val in prices.items() if val > 200}
+print {key:val if val > 200 else 0 for key, val in prices.items()}
 
 
 # Make a dictionary of tech stocks
