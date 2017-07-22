@@ -12,30 +12,24 @@ rows = [
     {'address': '1039 W GRANVILLE', 'date': '07/04/2012'},
 ]
 
-
-# method1
-rows.sort(key=lambda r: r['date'])
-date = rows[0]['date']
-print date
-for r in rows:
-    if date != r['date']:
-        date = r['date']
-        print date
-    print('    ', r)
-
-
-# method2
+# method - 1
 from collections import defaultdict
 rows_by_date = defaultdict(list)
-date = rows[0]['date']
-for r in rows:
-    if date != r['date']:
-        date = r['date']
-    rows_by_date[date].append(r)
+for row in rows:
+    rows_by_date[row['date']].append(row)
 
-for key, rows in rows_by_date.items():
-    print key
-    for row in rows:
-        print('    ', row)
+for key, vals in rows_by_date.items():
+    print key,
+    for val in vals:
+        print val,
+    print
 
-
+# method - 2
+# 注意groupby返回的是一个iterator
+rows = sorted(rows, key=lambda item: item['date'])
+from itertools import groupby
+for key, vals in groupby(rows, lambda row: row['date']):
+    print key,
+    for val in vals:
+        print val,
+    print
