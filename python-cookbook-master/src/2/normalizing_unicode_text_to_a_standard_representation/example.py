@@ -1,7 +1,4 @@
-#! /usr/bin/python
-# example.py
-#
-# Example of unicode normalization
+#! /usr/bin/env python3
 
 # Two strings
 s1 = 'Spicy Jalape\u00f1o'
@@ -23,6 +20,7 @@ n_s2 = unicodedata.normalize('NFC', s2)
 
 print('n_s1 == n_s2', n_s1 == n_s2)
 print(len(n_s1), len(n_s2))
+print(n_s1)
 
 # (d) Example of normalizing to a decomposed form and stripping accents
 t1 = unicodedata.normalize('NFD', s1)
