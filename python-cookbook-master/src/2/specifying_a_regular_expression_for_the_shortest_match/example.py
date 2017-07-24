@@ -11,8 +11,8 @@ data = "hello\nworld"
 # 你可以认为点(.)每次匹配从新的一行开始
 # 如果采用最短匹配就无法匹配到任何内容
 # 注意贪婪匹配和最短匹配的区别
-pattern = re.compile(".*?l")
-print pattern.findall(data)     # ['hello', '', 'world', '']
+pattern = re.compile(".*l")
+print pattern.findall(data)
 for string in pattern.finditer(data):
     print string.group(),
 print
