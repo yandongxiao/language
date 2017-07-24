@@ -11,6 +11,7 @@ B = ["a", "b", "c", "d"]
 for x in chain(A, B):
     print x
 
+
 for i in chain("hello", "world"):
     print i,
 print
