@@ -10,5 +10,5 @@ patter = re.compile(r'\"(.+)\"')
 print patter.findall(text)
 
 # 采用最短匹配
-patter = re.compile(r'\"(.+?)\"')
+patter = re.compile(r'\".+?\"')
 print patter.findall(text)
