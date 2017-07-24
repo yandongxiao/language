@@ -11,14 +11,10 @@ addresses = [
     '4802 N BROADWAY',
 ]
 
-a = [addr for addr in addresses if match(addr, '* ST')]
-print (a)
+print [addr for addr in addresses if match(addr, '* ST')]
 
-a = [addr for addr in addresses if re.match(r'.*ST', addr)]
-print (a)
+print [addr for addr in addresses if re.match(r'.*ST', addr)]
 
-b = [addr for addr in addresses if match(addr, '54[0-9][0-9]*CLARK*')]
-print(b)
+print [addr for addr in addresses if match(addr, '54[0-9][0-9]*CLARK*')]
 
-b = [addr for addr in addresses if re.match(r'54[0-9][0-9].*CLARK.*', addr) ]
-print(b)
+print [addr for addr in addresses if re.match(r'54[0-9][0-9].*CLARK.*', addr) ]
