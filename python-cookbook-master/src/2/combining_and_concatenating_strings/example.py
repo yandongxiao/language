@@ -35,4 +35,3 @@ def combine(source, maxsize):
 for part in combine(sample(), 32768):
     sys.stdout.write(part)
 sys.stdout.write('\n')
-
