@@ -9,3 +9,4 @@ def frange(start, end, step):
 
 for f in frange(0, 2, 0.5):
     print f
+
