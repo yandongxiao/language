@@ -17,8 +17,6 @@ morewords = ['eyes']
 counter.update(morewords)   # keyword iterable.
 assert counter['eyes'] == 9
 
-
-
 counter1 = Counter(words)   # a child of buildins dict
 counter2 = Counter(morewords)
 

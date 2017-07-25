@@ -17,6 +17,7 @@
 # 4. encode转成需要的目标编码
 # 5. 写到目标输出(文件或控制台)
 
+# 为什么使用rt模式读取数据返回的对象的类型还是  str
 with open("testfile.txt", "rb") as f:
     data = f.read()
     print(type(data))   # 以二进制形式读取的数据是编码后的str
@@ -24,3 +25,7 @@ with open("testfile.txt", "rb") as f:
     print(type(text))   # 解码后的类型是unicode类型的内容
     print(text)         # 之所以这里会报错，就是因为python使用系统默认的ascii对unicode进行编码
     print(text.encode("utf-8")) # 这才是输出的正确姿势
+
+with open("testfile.txt", "rt") as f:
+    data = f.read()
+    print(type(data))
