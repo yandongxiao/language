@@ -62,7 +62,6 @@ def test():         # 被封装的test函数变成了生产者，是协程也是
         print(r)
     print('Goodbye')
 
-
 if __name__ == '__main__':
     # Simple test
     print('# --- Simple test')
