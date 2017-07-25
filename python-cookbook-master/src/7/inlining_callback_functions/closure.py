@@ -5,7 +5,7 @@
 
 def test():
     num1 = yield 1
-    print(num1)
+    assert "hello" == num1
     num2 = yield 2
     print("===" + str(num2))
 
