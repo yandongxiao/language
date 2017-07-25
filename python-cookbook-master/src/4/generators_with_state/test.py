@@ -5,12 +5,12 @@ from collections import deque
 
 def search(lines, pattern, history=3):
     buffer = deque(maxlen=history)
-    # 注意enumerate带来的好处
     for n, line in enumerate(lines, 1):
         buffer.append((n, line))
         if pattern in line:
             yield buffer
             buffer.clear()
+
 
 with open("somefile.txt") as f:
     for lines in search(f, "python"):

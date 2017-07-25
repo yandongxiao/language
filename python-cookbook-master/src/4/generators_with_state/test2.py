@@ -13,6 +13,7 @@ def histlines(lines, history=2):
         yield n, line, buffer
         buffer.append((n, line))
 
+
 with open("somefile.txt") as f:
     lines = histlines(f)
     for n, line, buffer in lines:
