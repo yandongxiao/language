@@ -12,6 +12,7 @@ with TemporaryFile("w+t") as f:
     line = f.read()
     print(line)
 
+
 import time
 import os
 with TemporaryDirectory() as dirname:
