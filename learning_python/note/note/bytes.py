@@ -9,7 +9,6 @@ with open("testfile.txt", "rb") as f:
     print(type(data))
     print(data.decode("utf-8"))
 
-
 with open("testfile.txt", "wb") as f:
     text = "0 1 2 3456789"
     f.write(text.encode("utf-8"))
