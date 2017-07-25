@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python3
 import os
 import fnmatch
 import gzip
@@ -34,13 +34,15 @@ def gen_concatenate(iterators):
     '''
     Chain a sequence of iterators together into a single sequence.
     '''
-    for it in iterators:
+    for iter in iterators:
         # yield from it 简单的返回生成器 it 所产生的所有值
         # it对象本身是file对象
         # file对象本身是可迭代的
         # file对象next方法输出的是一行一行的记录
         # yield from it 返回这些文件的每一行一行
-        yield from it   # 为什么是yield from it
+        #yield from it   # 为什么是yield from it
+        for line in iter:
+            yield line
 
 def gen_grep(pattern, lines):
     '''
