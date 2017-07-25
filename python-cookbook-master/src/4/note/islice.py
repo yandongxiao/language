@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-# 在迭代器上使用切片操作
+# 在迭代器和生成器上使用切片操作
 from itertools import islice
 
 def gen():
