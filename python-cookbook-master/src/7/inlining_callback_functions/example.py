@@ -11,7 +11,7 @@ from queue import Queue
 from functools import wraps
 
 # Sample function to illustrate callback control flow
-def apply_async(func, args, *, callback):
+def apply_async(func, args, *, callback):   # callback 必须采用关键字参数给出
     # Compute the result
     result = func(*args)
     # Invoke the callback with the result
