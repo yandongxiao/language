@@ -5,5 +5,5 @@
 try:
     with open("testfile.txt", "xt") as f:
         f.write("helloworld")
-except FileExistsError as e:    #语法类似于with..as
+except FileExistsError as e:
     print(e)
