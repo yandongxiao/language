@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-# Example of getting a directory listing
-
 import os
 import os.path
 import glob
