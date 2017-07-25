@@ -52,7 +52,7 @@ def add(x, y):
 # 等价于
 # test = inlined_async(test)
 @inlined_async
-def test():         # 被封装的test函数变成了生产者
+def test():         # 被封装的test函数变成了生产者，是协程也是生成器
     r = yield Async(add, (2, 3))
     print(r)
     r = yield Async(add, ('hello', 'world'))
