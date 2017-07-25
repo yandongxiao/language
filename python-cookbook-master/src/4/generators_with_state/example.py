@@ -6,16 +6,16 @@
 
 from collections import deque
 
-# 如果使用生成器函数，生成器的中间状态都需要通过yield函数来返回
-# 通过类的方式，可以更优雅的处理上面的问题
+# 如果你想让你的生成器暴露外部状态给用户， 别忘了你可以简单的将它实现为一个类，
+# 然后把生成器函数放到 __iter__() 方法中过去。
 class linehistory:
     def __init__(self, lines, histlen=3):
         self.lines = lines
         self.history = deque(maxlen=histlen)
 
-    # __iter__ 返回的是可迭代对象
+    # __iter__ 返回的是迭代器，常见方法
     # 1. iter(内部容器)，做一个内部容器的代理；
-    # 通过yield，将__ier__函数变成一个生成器
+    # 2. 通过yield，将__ier__函数变成一个生成器
     def __iter__(self):
         # 文件带上行号的方法
         for lineno, line in enumerate(self.lines, 1):
