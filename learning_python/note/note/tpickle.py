@@ -18,5 +18,3 @@ pickle.dump({"hello": "world"}, f)
 f.seek(0)   # very important
 print(pickle.load(f))
 print(pickle.load(f))
-
-#
