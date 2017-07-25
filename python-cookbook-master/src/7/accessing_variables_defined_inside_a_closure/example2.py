@@ -3,9 +3,6 @@
 # Example of faking classes with a closure
 
 # 使用闭包来模拟类
-# NOTE: python中特殊方法虽然是以双下划线开头的，但是python不会对它的名称进行变形
-# 前后都有双下划线的名称，python不会对它变形
-
 import sys
 class ClosureInstance:
     def __init__(self, locals=None):

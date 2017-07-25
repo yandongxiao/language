@@ -16,3 +16,6 @@ def distance(p1, p2):
 pt = (4,3)
 points.sort(key=partial(distance, pt))
 print(points)
+
+points.sort(key=lambda p2: distance(pt, p2))
+print(points)
