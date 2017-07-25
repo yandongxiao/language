@@ -6,16 +6,16 @@
 # 利用生产者和消费者模式，构建generators and coroutines，使得回调函数的处理可以集中到一块。甚至
 # 回调函数无需是函数。
 
+# Inlined callback implementation
+from queue import Queue
+from functools import wraps
+
 # Sample function to illustrate callback control flow
 def apply_async(func, args, *, callback):
     # Compute the result
     result = func(*args)
     # Invoke the callback with the result
     callback(result)
-
-# Inlined callback implementation
-from queue import Queue
-from functools import wraps
 
 class Async:
     def __init__(self, func, args):
