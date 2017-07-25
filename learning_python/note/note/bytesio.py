@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-#from io import StringIO
-#from BytesIO import BytesIO
 from io import BytesIO
 
 f = BytesIO("中国")
