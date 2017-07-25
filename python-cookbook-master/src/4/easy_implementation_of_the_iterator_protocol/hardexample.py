@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
 # Hard example of depth-first iteration using an iterator object
 
 class Node:
@@ -10,7 +13,7 @@ class Node:
 
     def add_child(self, other_node):
         self._children.append(other_node)
- 
+
     def __iter__(self):
         return iter(self._children)
 
@@ -29,7 +32,7 @@ class DepthFirstIterator(object):
     def __iter__(self):
         return self
 
-    def __next__(self):
+    def next(self):
         # Return myself if just started. Create an iterator for children
         if self._children_iter is None:
             self._children_iter = iter(self._node)
