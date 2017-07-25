@@ -6,7 +6,7 @@ class Node(object):
         self._val = val
         self._child = []
 
-    # __expr__ 与 __str__ 的区别
+    # __repr__ 与 __str__ 的区别
     # __str__ 是这里需要的方法，即print Node(1)输出对象的字符串形式
     # 没有__expr__, 正确的是 __repr__
     def __repr__(self):
