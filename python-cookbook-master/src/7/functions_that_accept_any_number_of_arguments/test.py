@@ -16,7 +16,6 @@ def b(x, *args, y, **kwargs):
 # NOTE: rest 是元组，不是列表
 def agv(first, *rest):
     return float(first+sum(rest)) / (len(rest)+1)
-
 print(agv(1, 2, 3, 4))
 print(agv(1))
 
