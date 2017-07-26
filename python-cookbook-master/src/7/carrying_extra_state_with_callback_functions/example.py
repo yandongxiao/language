@@ -79,9 +79,8 @@ def handler(result, seq):
     seq.sequence += 1
     print('[{}] Got: {}'.format(seq.sequence, result))
 
-seq = SequenceNo()
 from functools import partial   #So,partial is used to pass a argument to other fucntion.
-new_handler = partial(handler, seq=seq)
+new_handler = partial(handler, seq=SequenceNo())
 
 apply_async(add, (2, 3), callback=new_handler)
 apply_async(add, ('hello', 'world'), callback=new_handler)
