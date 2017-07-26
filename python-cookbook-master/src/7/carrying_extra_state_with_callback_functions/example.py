@@ -66,7 +66,7 @@ def make_handler():
 handler = make_handler()
 next(handler)    # 启动协程
 apply_async(add, (2, 3), callback=handler.send)
-apply_async(add, ('hello', 'world'), callback=handler.send) # 使用send作为回调函数
+apply_async(add, ('hello', 'world'), callback=handler.send)
 handler.close()
 
 # (e) Partial function application
