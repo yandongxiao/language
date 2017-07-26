@@ -30,7 +30,6 @@ apply_async(add, ('hello', 'world'), callback=print_result)
 print('# --- Using a bound-method')
 class ResultHandler:
     def __init__(self):
-        # 外部变量被封装在类实例的成员当中
         self.sequence = 0
     def handler(self, result):
         self.sequence += 1
