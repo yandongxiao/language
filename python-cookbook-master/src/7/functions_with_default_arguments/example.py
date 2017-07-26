@@ -46,7 +46,6 @@ def spam(b=_no_value):
         print("No b value supplied")
     else:
         print("b=", b)
-
 spam()
 spam(None)
 spam(0)
