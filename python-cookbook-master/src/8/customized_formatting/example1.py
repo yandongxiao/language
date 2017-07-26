@@ -6,21 +6,37 @@
 # 总之，支持变量插入模式
 
 # 普通模式
-'{} is {}'.format(1,2) == '1 is 2'
+assert '{} is {}'.format(1,2) == '1 is 2'
 
 # 支持位置
-'{1} is {0}'.format(1,2) == '2 is 1'
+assert '{1} is {0}'.format(1,2) == '2 is 1'
 
 # 支持关键字
-'{name} is {age}'.format(name='jack', age=10) == 'jack is 10'
+assert '{name} is {age}'.format(name='jack', age=10) == 'jack is 10'
 
 # 支持类属性
 class Person(object):
     def __init__(self, name, age):
         self.name = name
         self.age = age
-'{p.name} is {p.age}'.format(p=Person('jack', 10)) == 'jack is 10'
+assert '{p.name} is {p.age}'.format(p=Person('jack', 10)) == 'jack is 10'
 
+
+# __format__ 方法是为了让实例支持一下格式调用
+# '{}'.format(p)
+class Person(object):
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # NOTE: __format__方法需要两个参数
+    def __format__(self, code):
+        return "{self.name} is {self.age}".format(self=self)
+
+assert 'hello, {0}, {1}'.format(Person("jack", 10), 1) == 'hello, jack is 10, 1'
+
+
+# case
 
 _formats = {
     'ymd' : '{d.year}-{d.month}-{d.day}',
@@ -35,13 +51,12 @@ class Date:
         self.day = day
 
     def __format__(self, code=''):
-        print "dsadsall", code
         if code == '':
             code = 'ymd'
         fmt = _formats[code]
         return fmt.format(d=self)
 
 d = Date(11, 11, 11)
-#print format(date)
-#print '{d.year}-{d.month}-{d.day}'.format(d=d)
-print '{}'.format(d)
+assert format(d) == '11-11-11'
+# 这个不会调用__deploy__方法的
+assert '{d.year}-{d.month}-{d.day}'.format(d=d) == '11-11-11'
