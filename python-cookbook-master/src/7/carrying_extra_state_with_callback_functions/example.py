@@ -44,7 +44,7 @@ print('# --- Using a closure')
 def make_handler():
     sequence = 0
     def handler(result):
-        nonlocal sequence   # 否则就是use before assignment
+        nonlocal sequence
         sequence += 1
         print('[{}] Got: {}'.format(sequence, result))
     return handler
