@@ -50,7 +50,6 @@ if __name__ == '__main__':
     print("==================")
 
 
-    # 第二种方法是主动注册
     # Register file streams and retry
     # 利用register方法将类对象进行归类时，不需要类对象实现任何特殊方法
     # 归类的目的是为了利用isinstance 和 issubclass
