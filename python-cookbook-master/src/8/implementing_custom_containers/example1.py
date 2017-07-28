@@ -1,15 +1,17 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
-# collections 中定义了很多的容器基类，当你希望自定义自己的容器时，应该考虑从colelctions的某个基类中继承
-# Example of a custom container
+'''
+collections 中定义了很多的容器基类，当你希望自定义自己的容器时，应该考虑从colelctions的某个基类中继承
+'''
 
 import collections
 import bisect
 
-class SortedItems(collections.Sequence):
+
+class SortedItems(collections.Sequence):    # collections 像是一个抽象基类一样
     def __init__(self, initial=None):
-        self._items = sorted(initial) if initial is None else []
+        self._items = sorted(initial) if initial is not None else []
 
     # Required sequence methods
     def __getitem__(self, index):
@@ -22,17 +24,16 @@ class SortedItems(collections.Sequence):
     def add(self, item):
         bisect.insort(self._items, item)
 
+    def __eq__(self, item):
+        return self._items == item
+
+
 if __name__ == '__main__':
    items = SortedItems([5, 1, 3])
-   print(list(items))
-   print(items[0])
-   print(items[-1])
+   assert items == [1, 3, 5]
+   assert items[-1] == 5        # index 支持负数形式
    items.add(2)
-   print(list(items))
    items.add(-10)
-   print(list(items))
-   print(items[1:4])
-   print(3 in items)
-   print(len(items))
-   for n in items:
-       print(n)
+   assert items == [-10, 1, 2, 3, 5]
+   assert 3 in items
+   assert len(items) == 5
