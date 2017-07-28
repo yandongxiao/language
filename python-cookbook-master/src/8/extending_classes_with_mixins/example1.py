@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/bin/env python
 # encoding: utf-8
 
 # LoggedMappingMixin, SetOnceMappingMixin, StringKeysMappingMixin是实现了某种功能的类
@@ -40,7 +40,7 @@ class StringKeysMappingMixin:
     '''
     Restrict keys to strings only
     '''
-    __slots__ = ()
+    #__slots__ = ()
     def __setitem__(self, key, value):
         print ("StringKeysMappingMixin")
         if not isinstance(key, str):
