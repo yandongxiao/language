@@ -11,6 +11,7 @@ class Spam:
 # 在对象群组内部使用弱引用（即不会在引用计数中被计数的引用）有时能避免出现引用环，因此弱引用可用于解决循环引用的问题
 # 弱引用，与强引用相对，是指不能确保其引用的对象不会被垃圾回收器回收的引用。
 import weakref
+import sys
 _spam_cache = weakref.WeakValueDictionary()
 
 def get_spam(name):
@@ -26,7 +27,6 @@ def get_spam(name):
     return s    # 这里返回一个强引用
 
 
-import sys
 if __name__ == '__main__':
     a = get_spam('foo')
     b = get_spam('bar')
