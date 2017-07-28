@@ -1,8 +1,6 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
-# Defining a simple abstract base class
-
 from abc import ABCMeta, abstractmethod
 
 class IStream(metaclass=ABCMeta):
