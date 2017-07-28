@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 
+# 如果要实现DictLike也是需要实现__len__, __getitem__, __delitem__, __setitem__方法
 class ListLike:
     def __init__(self):
         self._items = []
