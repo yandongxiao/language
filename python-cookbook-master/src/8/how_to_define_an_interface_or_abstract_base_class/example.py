@@ -27,8 +27,8 @@ def serialize(obj, stream):
 
 # Examples
 if __name__ == '__main__':
-    # Attempt to instantiate ABC directly (doesn't work)
     try:
+        # Attempt to instantiate ABC directly (doesn't work)
         a = IStream()
     except TypeError as e:
         print(e)
@@ -48,6 +48,7 @@ if __name__ == '__main__':
     except TypeError as e:
         print(e)
     print("==================")
+
 
     # 第二种方法是主动注册
     # Register file streams and retry
