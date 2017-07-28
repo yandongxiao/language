@@ -5,7 +5,7 @@ class Person:
     # 底层存储的对象名称实际上是_first_name
     # self.first_name = first_name实际上是为了触发setter函数的执行
     def __init__(self, first_name):
-        self.first_name = first_name
+        self.first_name = first_name        # 调用first_name的set方法
 
     # Getter function
     @property
@@ -22,6 +22,7 @@ class Person:
     @first_name.deleter
     def first_name(self):
         raise RuntimeError("not allowed")
+
 
 if __name__ == '__main__':
    a = Person('Guido')
