@@ -1,9 +1,6 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
-# 装饰器的另外一种使用形式
-# 主动调用property
-
 class Person:
     def __init__(self, first_name):
         self.first_name = first_name
