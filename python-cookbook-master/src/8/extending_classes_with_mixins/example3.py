@@ -1,10 +1,8 @@
 #! /usr/bin/env python3
 #encoding: utf-8
 
-# Class decorator alternative to mixins
-# 采用装饰器的方法对类方法的功能进行扩充
-
-def LoggedMapping(cls):
+def LoggedMapping(cls):     # 注意这是一个函数
+    # 这是暂存类的方法
     cls_getitem = cls.__getitem__
     cls_setitem = cls.__setitem__
     cls_delitem = cls.__delitem__
@@ -26,6 +24,7 @@ def LoggedMapping(cls):
     cls.__delitem__ = __delitem__
     return cls
 
+# LoggedDict = LoggedMapping(LoggedDict)
 @LoggedMapping
 class LoggedDict(dict):
     pass

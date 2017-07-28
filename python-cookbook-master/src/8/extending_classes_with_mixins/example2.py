@@ -7,7 +7,8 @@ class RestrictKeysMixin(object):
     # 虽然RDict没有__init__方法，但是默认实现的方式会去调用基类的方法
     def __init__(self, *args, _restrict_key_type, **kwargs):
         self.__restrict_key_type = _restrict_key_type
-        # 这一句是必须的哟
+        # 这一句是必须的，并非是调用object的__init__方法去了
+        # 而是调用dict的init方法
         super().__init__(*args, **kwargs)
 
     def __setitem__(self, key, value):
