@@ -1,8 +1,6 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
-# Example of managed attributes via properties
-
 # 这是一个描述符
 # class String 提供了一个对name的值的类型检查的功能
 class String:
@@ -50,7 +48,7 @@ class SubPerson(Person):
 #        return super().name
 
 if __name__ == '__main__':
-   a = Person2('Guido')
+   a = Person('Guido')
    print(a.name)
    a.name = 'Dave'
    print(a.name)
