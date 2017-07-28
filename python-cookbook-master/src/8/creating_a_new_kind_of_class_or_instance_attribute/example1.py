@@ -21,6 +21,7 @@ class Integer:
 
     # NOTE: 注意与__setattr__进行区分
     def __set__(self, instance, value):
+        print("__set__")
         if not isinstance(value, int):
             raise TypeError('Expected an int')
         instance.__dict__[self.name] = value
@@ -48,6 +49,7 @@ if __name__ == '__main__':
     p = Point(2, 3) # 两次set操作
     print(p.x)      # 一次get操作
     p.y = 5         # 一次set
+    p.y = 6         # 一次set
     try:
         p.x = 2.3   # 一次set操作
     except TypeError as e:
