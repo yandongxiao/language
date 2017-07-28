@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 from time import localtime
 
 class Date:
@@ -7,6 +10,7 @@ class Date:
         self.day = day
 
     # Class method that bypasses __init__
+    # __new__是静态方法
     @classmethod
     def today(cls):
         d = cls.__new__(cls)
