@@ -8,18 +8,22 @@ class Person:
         self.first_name = first_name        # 调用first_name的set方法
 
     # Getter function
+    # property 是一个类，是一个描述符（实现了__get__, __set__, __del__）
+    # 更是被当做修饰符来使用
+    # first_name = property(first_name)
     @property
-    def first_name(self):
+    def first_name(self):       # property的__init__方法的第一个参数是get
         return self._first_name
 
     # Setter function
+    # first_name = first_name.setter(first_name)    #  设置set操作
     @first_name.setter
     def first_name(self, value):
         if not isinstance(value, str):
             raise TypeError('Expected a string')
         self._first_name = value
 
-    @first_name.deleter
+    @first_name.deleter     # 同上
     def first_name(self):
         raise RuntimeError("not allowed")
 
