@@ -1,8 +1,6 @@
 #! /usr/bin/env python3
 #encoding: utf-8
 
-# Example involving new and some of its problems
-
 import weakref
 
 
