@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+# 如果你尝试将super给注释掉以后，初始化工作就会被中断
+
 class sample1(object):
     def __init__(self):
         print("sample1")
