@@ -1,57 +1,68 @@
-# Base class. Uses a descriptor to set a value
+#! /usr/bin/env python
+# encoding: utf-8
+
 class Descriptor:
     def __init__(self, name=None, **opts):
         self.name = name
         self.__dict__.update(opts)
 
+    # 并不需要去实现get和del方法
     def __set__(self, instance, value):
         instance.__dict__[self.name] = value
 
-# Descriptor for enforcing types
-class Typed(Descriptor):
-    expected_type = type(None)
+
+class Typed(Descriptor):    # 这是描述符之间的继承
+    expected_type = type(None)  # 留个被检查的类对象去实例化
 
     def __set__(self, instance, value):
         if not isinstance(value, self.expected_type):
             raise TypeError('expected ' + str(self.expected_type))
-        super().__set__(instance, value)
+        super(Typed, self).__set__(instance, value)
 
-# Descriptor for enforcing values
+
 class Unsigned(Descriptor):
     def __set__(self, instance, value):
         if value < 0:
             raise ValueError('Expected >= 0')
-        super().__set__(instance, value)
+        super(Unsigned. self).__set__(instance, value)
 
-class MaxSized(Descriptor):
+
+class MaxSized(Descriptor):     # 这是一个有状态的描述符
     def __init__(self, name=None, **opts):
         if 'size' not in opts:
             raise TypeError('missing size option')
         self.size = opts['size']
-        super().__init__(name, **opts)
+        super(MaxSized, self).__init__(name, **opts)
 
     def __set__(self, instance, value):
         if len(value) >= self.size:
             raise ValueError('size must be < ' + str(self.size))
-        super().__set__(instance, value)
+        super(MaxSized, self).__set__(instance, value)
+
 
 class Integer(Typed):
     expected_type = int
 
+
 class UnsignedInteger(Integer, Unsigned):
     pass
+
 
 class Float(Typed):
     expected_type = float
 
+
 class UnsignedFloat(Float, Unsigned):
     pass
+
 
 class String(Typed):
     expected_type = str
 
+
 class SizedString(String, MaxSized):
     pass
+
 
 # Class decorator to apply constraints
 def check_attributes(**kwargs):
@@ -83,6 +94,7 @@ def test(s):
         s.shares = -10
     except ValueError as e:
         print(e)
+
     try:
         s.price = 'a lot'
     except TypeError as e:
@@ -98,7 +110,7 @@ if __name__ == '__main__':
     print("# --- Class with descriptors")
     class Stock:
         # Specify constraints
-        name = SizedString('name',size=8)
+        name = SizedString('name', size=8)
         shares = UnsignedInteger('shares')
         price = UnsignedFloat('price')
         def __init__(self, name, shares, price):
@@ -110,23 +122,12 @@ if __name__ == '__main__':
     test(s)
 
     print("# --- Class with class decorator")
+    # decrate = check_attributes(...)
+    # Stock = decrate(Stock)
     @check_attributes(name=SizedString(size=8),
                       shares=UnsignedInteger,
                       price=UnsignedFloat)
     class Stock:
-        def __init__(self, name, shares, price):
-            self.name = name
-            self.shares = shares
-            self.price = price
-
-    s = Stock('ACME',50,91.1)
-    test(s)
-
-    print("# --- Class with metaclass")
-    class Stock(metaclass=checkedmeta):
-        name   = SizedString(size=8)
-        shares = UnsignedInteger()
-        price  = UnsignedFloat()
         def __init__(self, name, shares, price):
             self.name = name
             self.shares = shares
