@@ -1,15 +1,13 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
-# 在抽象类当中，定义特性
-
 # @abstractmethod 还能注解静态方法、类方法和 properties
 # 你只需保证这个注解紧靠在函数定义前即可
 from abc import ABCMeta, abstractmethod
 
 class A(metaclass=ABCMeta):
     @property
-    @abstractmethod
+    @abstractmethod     # abstractmethod紧靠着方法名称
     def name(self):
         pass
 
