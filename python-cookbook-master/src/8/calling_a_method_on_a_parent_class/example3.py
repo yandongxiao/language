@@ -6,15 +6,19 @@ class Proxy(object):
         self._obj = obj
 
     # Delegate attribute lookup to internal obj
+    # Called when an attribute lookup has not found the attribute in the usual places
+    # Note that if the attribute is found through the normal mechanism, __getattr__() is not called.
+    # See the __getattribute__() method below for a way to actually get total control in new-style classes.
     def __getattr__(self, name):
         return getattr(self._obj, name)
 
     # Delegate attribute assignment
     def __setattr__(self, name, value):
         if name.startswith('_'):
-            super().__setattr__(name, value)    # Call original __setattr__
+            super().__setattr__(name, value)    # Call object's __setattr__
         else:
             setattr(self._obj, name, value)
+
 
 if __name__ == '__main__':
     class A:
