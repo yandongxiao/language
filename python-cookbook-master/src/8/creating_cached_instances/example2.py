@@ -21,11 +21,11 @@ class CachedSpamManager:
         return s    # 强引用
 
 class Spam:
+    # as a class attribute
+    manager = CachedSpamManager()
     def __init__(self, name):
         self.name = name
 
-# as a class attribute
-Spam.manager = CachedSpamManager()
 def get_spam(name):
     return Spam.manager.get_spam(name)
 
