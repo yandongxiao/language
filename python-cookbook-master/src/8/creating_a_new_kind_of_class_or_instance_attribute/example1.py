@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 # encoding: utf-8
 
+
 # 描述器类, 注意不是装饰器
 # 描述器可实现大部分Python类特性中的底层魔法, 如@classmethod，@staticmethod等
 class Integer:
