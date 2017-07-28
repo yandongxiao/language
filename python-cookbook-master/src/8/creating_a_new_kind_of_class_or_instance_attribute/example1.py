@@ -30,11 +30,12 @@ class Integer:
 
 
 class Point:
-    x = Integer('x')
+    x = Integer('x')    # 定义的类变量
     y = Integer('y')
     def __init__(self, x, y):
         self.x = x  # 调用了Integer类的__setter__方法
         self.y = y
+
 
 if __name__ == '__main__':
     # 对实例v的操作不会触发__get__和__set__的操作
@@ -51,3 +52,6 @@ if __name__ == '__main__':
         p.x = 2.3   # 一次set操作
     except TypeError as e:
         print(e)
+
+    p2 = Point(100, 200)
+    print (p.x)
