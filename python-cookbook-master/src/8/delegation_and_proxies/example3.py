@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # encoding: utf-8
 
+
 class ListLike:
     def __init__(self):
         self._items = []
@@ -18,11 +19,21 @@ class ListLike:
     def __delitem__(self, index):
         del self._items[index]
 
+    def __myself(self):
+        print("myself")
+
+# 对于特殊方法(即以双下划线开始并且结尾的变量)的继承原则是全部继承
+class subclass(ListLike):
+    pass
+
+
 if __name__ == '__main__':
-    a = ListLike()
+    a = subclass()
     a.append(2)
     a.insert(0, 1)
     a.sort()
     print(len(a))
     print(a[0])
 
+    a._ListLike__myself()
+    a.__myself()
