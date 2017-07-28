@@ -23,13 +23,18 @@ class B:
     def public_method(self):    # 调用自己的函数
         self.__private_method()
 
+
 class C(B):
     def __init__(self):         # __init__
-        super().__init__()      # __init__
         self.__private = 1      # Does not override B.__private
-    def __private_method(self): # Does not override B.__private_method()
+        super(C, self).__init__()   # __init__
+
+    def __private_method(self):     # Does not override B.__private_method()
         print('C.__private_method')
+
 
 c = C()
 c.public_method()
+# 在类定义的时候进行了封装
+# 无论是继承还是直接使用该方法，都需要采用变形的方法
 c._C__private_method()
