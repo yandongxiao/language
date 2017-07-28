@@ -21,7 +21,6 @@ class Integer:
 
     # NOTE: 注意与__setattr__进行区分
     def __set__(self, instance, value):
-        print("__set__")
         if not isinstance(value, int):
             raise TypeError('Expected an int')
         instance.__dict__[self.name] = value
@@ -55,5 +54,5 @@ if __name__ == '__main__':
     except TypeError as e:
         print(e)
 
-    p2 = Point(100, 200)
-    print (p.x)
+    assert p.y == 6
+
