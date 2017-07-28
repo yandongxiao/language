@@ -30,6 +30,7 @@ class Proxy:
             print('delattr:', name)
             delattr(self._obj, name)
 
+
 if __name__ == '__main__':
     class Spam:
         def __init__(self, x):
