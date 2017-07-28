@@ -19,7 +19,6 @@ class Point:
     def __str__(self):
         return self.__repr__()
 
-
 p = Point(3,4)
 print eval(repr(p))
 print p
