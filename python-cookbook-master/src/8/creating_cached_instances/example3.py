@@ -1,9 +1,10 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 #encoding: utf-8
 
 # Example involving new and some of its problems
 
 import weakref
+
 
 class Spam:
     _spam_cache = weakref.WeakValueDictionary()     # 维护一个类变量
@@ -20,8 +21,8 @@ class Spam:
         print('Initializing Spam')
         self.name = name
 
+
 if __name__ == '__main__':
-    print("This should print 'Initializing Spam' twice")
     s = Spam('Dave')
     t = Spam('Dave')
     print(s is t)
