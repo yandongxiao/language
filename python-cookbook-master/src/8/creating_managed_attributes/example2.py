@@ -23,6 +23,7 @@ class Person:
 
     first_name = property(get_first_name, set_first_name, delete_first_name)
 
+
 if __name__ == '__main__':
    a = Person('Guido')
    print(a.first_name)
