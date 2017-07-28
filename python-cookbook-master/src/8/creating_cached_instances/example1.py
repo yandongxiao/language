@@ -25,6 +25,7 @@ def get_spam(name):
         assert sys.getrefcount(_spam_cache[name]) == 3
     return s    # 这里返回一个强引用
 
+
 import sys
 if __name__ == '__main__':
     a = get_spam('foo')
