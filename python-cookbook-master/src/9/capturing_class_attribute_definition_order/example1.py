@@ -12,6 +12,7 @@ class Typed:
         self._name = name
 
     def __set__(self, instance, value):
+        print("third")
         if not isinstance(value, self._expected_type):
             raise TypeError('Expected ' +str(self._expected_type))
         instance.__dict__[self._name] = value
@@ -33,6 +34,7 @@ class String(Typed):
 class OrderedMeta(type):        # 继承于type
     # __new__方法用来创建一个类对象
     def __new__(cls, clsname, bases, clsdict):
+        print("second", clsname)
         d = dict(clsdict)   # 传递进来的clsdict是一个OrderedDict实例对象，所以要该
         order = []
         for name, value in clsdict.items():
@@ -45,16 +47,19 @@ class OrderedMeta(type):        # 继承于type
     # 对比__new__的参数可知，返回的是clsdict
     @classmethod
     def __prepare__(cls, clsname, bases):
+        print("first", clsname)
         return OrderedDict()
 
 
 # Example class that uses the definition order to initialize members
+# Structure['_order'] 的值为空
 class Structure(metaclass=OrderedMeta):
     def as_csv(self):
-        return ','.join(str(getattr(self,name)) for name in self._order)
+        return ','.join(str(getattr(self, name)) for name in self._order)
 
 
 # Example use
+# Stock['_order'] = ['name', 'shares', 'price']
 class Stock(Structure):
     name = String()
     shares = Integer()
