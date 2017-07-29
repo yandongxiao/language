@@ -17,7 +17,7 @@ class CodeAnalyzer(ast.NodeVisitor):
 if __name__ == '__main__':
     # Some python code
     code = '''
-for i in range(10): 
+for i in range(10):
     print(i)
 del i
 '''
