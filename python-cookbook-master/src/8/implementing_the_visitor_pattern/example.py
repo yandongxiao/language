@@ -41,7 +41,7 @@ class NodeVisitor:
         if meth is None:
             meth = self.generic_visit
         return meth(node)
-    
+
     def generic_visit(self, node):
         raise RuntimeError('No {} method'.format('visit_' + type(node).__name__))
 
@@ -87,17 +87,17 @@ class StackCode(NodeVisitor):
 
     def visit_Sub(self, node):
         self.binop(node, 'SUB')
- 
+
     def visit_Mul(self, node):
         self.binop(node, 'MUL')
-       
+
     def visit_Div(self, node):
         self.binop(node, 'DIV')
 
     def unaryop(self, node, instruction):
         self.visit(node.operand)
         self.instructions.append((instruction,))
-  
+
     def visit_Negate(self, node):
         self.unaryop(node, 'NEG')
 
