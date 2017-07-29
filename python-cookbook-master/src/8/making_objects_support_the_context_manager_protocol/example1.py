@@ -33,6 +33,7 @@ if __name__ == '__main__':
         sock.send(b'GET /index.html HTTP/1.0\r\n')
         sock.send(b'Host: www.python.org\r\n')
         sock.send(b'\r\n')
+        # iter 拥有类似while true的功能
         resp = b''.join(iter(partial(sock.recv, 8192), b''))
         raise ValueError("no such value")
     print('Got %d bytes' % len(resp))
