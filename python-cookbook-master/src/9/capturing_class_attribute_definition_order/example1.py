@@ -30,7 +30,7 @@ class String(Typed):
 # 继承自type的元类OrderedMeta
 # bases: 表明了类对象的基类
 # clsdict 是类对象的属性
-class OrderedMeta(type):
+class OrderedMeta(type):        # 继承于type
     # __new__方法用来创建一个类对象
     def __new__(cls, clsname, bases, clsdict):
         d = dict(clsdict)   # 传递进来的clsdict是一个OrderedDict实例对象，所以要该
