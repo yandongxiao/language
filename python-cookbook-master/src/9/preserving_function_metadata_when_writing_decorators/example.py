@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 # encoding: utf-8
+
 import time
 from functools import wraps
 
@@ -16,9 +17,10 @@ def timethis(func):
         return result
     return wrapper
 
+
 if __name__ == '__main__':
     @timethis
-    def countdown(n:int):
+    def countdown(n):
         '''
         Counts down
         '''
