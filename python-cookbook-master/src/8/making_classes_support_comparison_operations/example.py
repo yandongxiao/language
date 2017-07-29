@@ -63,3 +63,4 @@ print("Is h2 smaller than h3?", h2 < h3) # prints True
 print("Is h2 greater than or equal to h1?", h2 >= h1) # prints False
 print("Which one is biggest?", max(houses)) # prints 'h3: 1101 square foot Split'
 print("Which is smallest?", min(houses)) # prints 'h2: 846 square foot Ranch'
+
