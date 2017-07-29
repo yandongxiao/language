@@ -18,10 +18,12 @@ def logged(func=None, *, level=logging.DEBUG, name=None, message=None):
         return func(*args, **kwargs)
     return wrapper
 
+
 # Example use
 @logged     # func is not None
 def add(x, y):
     return x + y
+
 
 # func is None
 # logged = partial(logged, level=level, name=name, message=message)
@@ -30,6 +32,9 @@ def add(x, y):
 def sub(x, y):
     return x - y
 
+
+# l = logged(...)   因为func是None值，所以返回的是partial的返回值
+# s = l(spam)
 @logged(level=logging.CRITICAL, name='example')
 def spam():
     print('Spam!')
@@ -40,4 +45,3 @@ if __name__ == '__main__':
     add(2,3)
     sub(2,3)
     spam()
-
