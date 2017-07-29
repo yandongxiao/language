@@ -1,9 +1,14 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+# 通过实现一个个的有状态的类来减少if/else的判断
+
 class Connection:
     def __init__(self):
         self.new_state(ClosedConnectionState)
 
     def new_state(self, newstate):
-        self._state = newstate
+        self._state = newstate      # 存储类对象，并非是实例对象
 
     # Delegate to the state class
     def read(self):
@@ -18,7 +23,9 @@ class Connection:
     def close(self):
         return self._state.close(self)
 
-# Connection state base class
+
+# 类对象的所有方法都是静态方法
+# 抽象基类的另外一种实现方法: raise NotImplementedError
 class ConnectionState:
     @staticmethod
     def read(conn):
@@ -36,7 +43,8 @@ class ConnectionState:
     def close(conn):
         raise NotImplementedError()
 
-# Implementation of different states
+
+# 继承抽象基类，并且在状态类之间进行切换
 class ClosedConnectionState(ConnectionState):
     @staticmethod
     def read(conn):
@@ -53,6 +61,8 @@ class ClosedConnectionState(ConnectionState):
     @staticmethod
     def close(conn):
         raise RuntimeError('Already closed')
+
+
 
 class OpenConnectionState(ConnectionState):
     @staticmethod
@@ -71,7 +81,7 @@ class OpenConnectionState(ConnectionState):
     def close(conn):
         conn.new_state(ClosedConnectionState)
 
-# Example
+
 if __name__ == '__main__':
     c = Connection()
     print(c)
@@ -81,7 +91,5 @@ if __name__ == '__main__':
         print(e)
 
     c.open()
-    print(c)
     c.read()
     c.close()
-    print(c)
