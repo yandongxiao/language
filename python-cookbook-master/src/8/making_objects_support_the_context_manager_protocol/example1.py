@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 from socket import socket, AF_INET, SOCK_STREAM
+from functools import partial
 
 class LazyConnection:
     def __init__(self, address, family=AF_INET, type=SOCK_STREAM):
@@ -17,22 +18,21 @@ class LazyConnection:
         self.sock.connect(self.address)
         return self.sock
 
-    def __exit__(self, exc_ty, exc_val, tb):
+    # 正常情况下，type，val，traceback 的输入都是None
+    def __exit__(self, exc_ty, exc_val, trace):
+        print "===", exc_ty
+        print "===", exc_val
+        print "===", trace, "=="
         self.sock.close()
         self.sock = None
 
 
 if __name__ == '__main__':
-    from functools import partial
-
-    c = LazyConnection(('www.python.org', 80))
-    # Connection closed
-    with c as s:
+    with LazyConnection(('www.python.org', 80)) as sock:
         # c.__enter__() executes: connection open
-        s.send(b'GET /index.html HTTP/1.0\r\n')
-        s.send(b'Host: www.python.org\r\n')
-        s.send(b'\r\n')
-        resp = b''.join(iter(partial(s.recv, 8192), b''))
-        # c.__exit__() executes: connection closed
-
+        sock.send(b'GET /index.html HTTP/1.0\r\n')
+        sock.send(b'Host: www.python.org\r\n')
+        sock.send(b'\r\n')
+        resp = b''.join(iter(partial(sock.recv, 8192), b''))
+        raise ValueError("no such value")
     print('Got %d bytes' % len(resp))
