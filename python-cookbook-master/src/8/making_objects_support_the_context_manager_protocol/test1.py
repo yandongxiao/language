@@ -23,6 +23,7 @@ class LazyConnection:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.sock.close()
         self.sock = None
+        return True
 
 from functools import partial
 
@@ -31,7 +32,7 @@ with LazyConnection(("www.baidu.com", 80)) as sock:
     sock.send(b"GET / HTTP/1.0\r\n")    # 注意有一个斜杠
     sock.send(b"HOST: www.baidu.com\r\n")
     sock.send(b"\r\n")
-
     resp = "".join(iter(partial(sock.recv, 1024), b''))
+    raise ValueError("no such file")
 
 print "recevice bytes %d" % len(resp)
