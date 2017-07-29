@@ -21,6 +21,8 @@ def logged(level, name=None, message=None):
     return decorate
 
 # Example use
+# decorate = logged(logging.DEBUG)
+# add = decorate(add)
 @logged(logging.DEBUG)
 def add(x, y):
     return x + y
