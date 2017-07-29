@@ -12,6 +12,7 @@ def decorator1(func):
         return func(*args, **kwargs)
     return wrapper
 
+
 def decorator2(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -19,8 +20,8 @@ def decorator2(func):
         return func(*args, **kwargs)
     return wrapper
 
-# 注意先执行decorator1的print语句
-# 因为print语句在func之前
+
+# add = decorator1(decorator2(add))
 @decorator1
 @decorator2
 def add(x, y):
