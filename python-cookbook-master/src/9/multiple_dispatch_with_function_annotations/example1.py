@@ -1,5 +1,9 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 import inspect
 import types
+
 
 class MultiMethod:
     '''
@@ -14,11 +18,10 @@ class MultiMethod:
         Register a new method as a multimethod
         '''
         sig = inspect.signature(meth)
-
         # Build a type-signature from the method's annotations
         types = []
         for name, parm in sig.parameters.items():
-            if name == 'self': 
+            if name == 'self':
                 continue
             if parm.annotation is inspect.Parameter.empty:
                 raise TypeError(
@@ -31,7 +34,6 @@ class MultiMethod:
             if parm.default is not inspect.Parameter.empty:
                 self._methods[tuple(types)] = meth
             types.append(parm.annotation)
-
         self._methods[tuple(types)] = meth
 
     def __call__(self, *args):
@@ -44,7 +46,7 @@ class MultiMethod:
             return meth(*args)
         else:
             raise TypeError('No matching method for types {}'.format(types))
-        
+
     def __get__(self, instance, cls):
         '''
         Descriptor method needed to make calls work in a class
@@ -53,7 +55,8 @@ class MultiMethod:
             return types.MethodType(self, instance)
         else:
             return self
-    
+
+
 class MultiDict(dict):
     '''
     Special dictionary to build multimethods in a metaclass
@@ -71,6 +74,7 @@ class MultiDict(dict):
                 super().__setitem__(key, mvalue)
         else:
             super().__setitem__(key, value)
+
 
 class MultipleMeta(type):
     '''
@@ -91,6 +95,7 @@ class Spam(metaclass=MultipleMeta):
     def bar(self, s:str, n:int = 0):
         print('Bar 2:', s, n)
 
+
 # Example: overloaded __init__
 import time
 class Date(metaclass=MultipleMeta):
@@ -102,6 +107,7 @@ class Date(metaclass=MultipleMeta):
     def __init__(self):
         t = time.localtime()
         self.__init__(t.tm_year, t.tm_mon, t.tm_mday)
+
 
 if __name__ == '__main__':
     s = Spam()
