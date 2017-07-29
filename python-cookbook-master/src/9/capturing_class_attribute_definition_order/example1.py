@@ -25,6 +25,7 @@ class Float(Typed):
 class String(Typed):
     _expected_type = str
 
+
 # Metaclass that uses an OrderedDict for class body
 # 继承自type的元类OrderedMeta
 # bases: 表明了类对象的基类
@@ -40,16 +41,17 @@ class OrderedMeta(type):
         d['_order'] = order
         return type.__new__(cls, clsname, bases, d)
 
-    # 对比__new__的参数可知，返回的是
-
+    # 对比__new__的参数可知，返回的是clsdict
     @classmethod
     def __prepare__(cls, clsname, bases):
         return OrderedDict()
+
 
 # Example class that uses the definition order to initialize members
 class Structure(metaclass=OrderedMeta):
     def as_csv(self):
         return ','.join(str(getattr(self,name)) for name in self._order)
+
 
 # Example use
 class Stock(Structure):
@@ -60,6 +62,7 @@ class Stock(Structure):
         self.name = name
         self.shares = shares
         self.price = price
+
 
 if __name__ == '__main__':
     s = Stock('GOOG',100,490.1)
