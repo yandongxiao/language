@@ -34,4 +34,3 @@ if __name__ == '__main__':
         p.age = 'Old'
     except TypeError as e:
         print(e)
-
