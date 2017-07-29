@@ -1,6 +1,5 @@
-# example2.py
-#
-# Singleton
+#! /usr/bin/env python3
+# encoding: utf-8
 
 class Singleton(type):
     def __init__(self, *args, **kwargs):
@@ -14,9 +13,11 @@ class Singleton(type):
         else:
             return self.__instance
 
+
 class Spam(metaclass=Singleton):
     def __init__(self):
         print('Creating Spam')
+
 
 if __name__ == '__main__':
     a = Spam()
