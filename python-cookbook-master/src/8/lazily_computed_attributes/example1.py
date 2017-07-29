@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # encoding: utf-8
 
 import math
@@ -35,18 +35,18 @@ class Circle:
     # 修饰符放在方法上也是可以的
     # area = lazyproperty(area)
     # NOTE: 以上调用正好符合了描述符的应用场景
-    @lazyproperty2
+    @lazyproperty
     def area(self):
         print('Computing area')
         return math.pi * self.radius ** 2
 
-    @lazyproperty2
+    @lazyproperty
     def perimeter(self):
         print('Computing perimeter')
         return 2 * math.pi * self.radius
 
 c = Circle(1)
-print(c.area())
-print(c.perimeter())
+print(c.area)
+print(c.perimeter)
 print(c.area)
 print(c.perimeter)
