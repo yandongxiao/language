@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
 from socket import socket, AF_INET, SOCK_STREAM
 
 class LazyConnection:
@@ -17,6 +20,7 @@ class LazyConnection:
     def __exit__(self, exc_ty, exc_val, tb):
         self.sock.close()
         self.sock = None
+
 
 if __name__ == '__main__':
     from functools import partial
