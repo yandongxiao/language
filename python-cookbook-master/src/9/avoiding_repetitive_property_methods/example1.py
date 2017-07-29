@@ -7,7 +7,7 @@ def typed_property(name, expected_type):
     storage_name = '_' + name
 
     @property
-    def prop(self):
+    def prop(self):     # 注意这个奇妙的property
         return getattr(self, storage_name)
 
     @prop.setter

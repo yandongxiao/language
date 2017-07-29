@@ -16,6 +16,7 @@ class typed_property(object):
             raise TypeError('{} must be a {}'.format(self.name[1:], self.expect_type))
         setattr(instance, self.name, value)
 
+
 # Example use
 class Person:
     name = typed_property('name', str)
