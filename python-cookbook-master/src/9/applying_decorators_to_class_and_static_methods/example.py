@@ -15,6 +15,7 @@ def timethis(func):
         return r
     return wrapper
 
+
 # Class illustrating application of the decorator to different kinds of methods
 # 由于装饰器timethis是一个通用接口的函数，所以可以应用到所有的方法
 class Spam:
