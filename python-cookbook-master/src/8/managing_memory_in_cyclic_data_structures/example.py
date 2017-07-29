@@ -23,7 +23,7 @@ class Node:
 
     def add_child(self, child):
         self.children.append(child)
-        child.parent = self
+        child.parent = self     # 触发了parrent setter方法的调用
 
 
 if __name__ == '__main__':
