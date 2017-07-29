@@ -1,3 +1,8 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
+
+# 丰富__init__的方法，支持关键字参数
 class Structure:
     _fields= []
     def __init__(self, *args, **kwargs):
