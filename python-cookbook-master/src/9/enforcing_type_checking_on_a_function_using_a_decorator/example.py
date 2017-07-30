@@ -27,6 +27,8 @@ def typeassert(*ty_args, **ty_kwargs):
 
 # Examples
 
+# decorate = typeassert(int, int)
+# add = decorate(add)
 @typeassert(int, int)
 def add(x, y):
     return x + y
@@ -48,4 +50,3 @@ if __name__ == '__main__':
         spam(1, 'hello', 'world')
     except TypeError as e:
         print(e)
-
