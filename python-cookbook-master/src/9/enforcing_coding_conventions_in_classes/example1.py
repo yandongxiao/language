@@ -1,3 +1,5 @@
+#! /usr/bin/env python3
+
 # A metaclass that disallows mixed case identifier names
 
 class NoMixedCaseMeta(type):
