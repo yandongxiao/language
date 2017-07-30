@@ -1,4 +1,5 @@
-# An alternative formulation of namedtuples
+#! /usr/bin/env python3
+# encoding: utf-8
 
 import operator
 import types
@@ -18,7 +19,7 @@ def named_tuple(classname, fieldnames):
     cls_dict['__new__'] = __new__
 
     # Make the class
-    cls = types.new_class(classname, (tuple,), {}, 
+    cls = types.new_class(classname, (tuple, ), {},
                            lambda ns: ns.update(cls_dict))
     cls.__module__ = sys._getframe(1).f_globals['__name__']
     return cls

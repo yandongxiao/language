@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 # Example of making a class manually from parts
 
 # Methods
@@ -17,6 +20,8 @@ cls_dict = {
 # Make a class
 import types
 
+# claname, bases, kwds, exec_body
+# 所以第四个参数是一个函数对象
 Stock = types.new_class('Stock', (), {}, lambda ns: ns.update(cls_dict))
 
 if __name__ == '__main__':
