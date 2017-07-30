@@ -1,3 +1,6 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
 from contextlib import contextmanager
 
 @contextmanager
@@ -22,4 +25,4 @@ if __name__ == '__main__':
         print(e)
 
     print(items)
-    
+
