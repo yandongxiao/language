@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # Reformulation using closures and function attributes
 from functools import wraps
 

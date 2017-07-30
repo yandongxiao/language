@@ -14,6 +14,7 @@ def timethis(func):
         return r
     return wrapper
 
+
 def profiled(func):
     ncalls = 0
     @wraps(func)
@@ -24,7 +25,6 @@ def profiled(func):
     wrapper.ncalls = lambda: ncalls
     return wrapper
 
-# Example
 
 @profiled
 def add(x, y):
