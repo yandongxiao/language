@@ -9,6 +9,7 @@ class MultiMethod:
     '''
     Represents a single multimethod.
     '''
+
     def __init__(self, name):
         self._methods = {}
         self.__name__ = name
