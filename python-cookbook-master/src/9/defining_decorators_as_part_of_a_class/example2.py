@@ -12,6 +12,7 @@ class Person:
             raise TypeError('Expected a string')
         self._first_name = value
 
+
 p = Person()
 p.first_name = 'Dave'
 print(p.first_name)

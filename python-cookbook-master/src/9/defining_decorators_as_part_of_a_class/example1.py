@@ -18,6 +18,7 @@ class A:
             return func(*args, **kwargs)
         return wrapper
 
+
 # Example
 # As an instance method
 a = A()
