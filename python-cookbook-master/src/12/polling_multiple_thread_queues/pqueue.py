@@ -5,7 +5,7 @@ import os
 class PollableQueue(queue.Queue):
     def __init__(self):
         super().__init__()
-        # Create a pair of connected sockets        
+        # Create a pair of connected sockets
         if os.name == 'posix':
             self._putsocket, self._getsocket = socket.socketpair()
         else:
@@ -18,7 +18,7 @@ class PollableQueue(queue.Queue):
             self._getsocket, _ = server.accept()
             server.close()
 
-    def fileno(self):
+    def fileno(self):   # 这是select函数要求的必须首先的方法
         return self._getsocket.fileno()
 
     def put(self, item):
