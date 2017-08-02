@@ -41,6 +41,3 @@ if __name__ == '__main__':
     exc.detach(task_a)
     exc.detach(task_b)
     exc.send('msg3')
-
-
-            
