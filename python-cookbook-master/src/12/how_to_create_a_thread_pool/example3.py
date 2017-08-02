@@ -6,8 +6,8 @@ def fetch_url(url):
     data = u.read()
     return data
 
+# submit work to the pool
 pool = ThreadPoolExecutor(10)
-# Submit work to the pool
 a = pool.submit(fetch_url, 'http://www.python.org')
 b = pool.submit(fetch_url, 'http://www.pypy.org')
 
