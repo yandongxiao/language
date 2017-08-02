@@ -32,7 +32,9 @@ class ActorScheduler:
             # 如果队列里面没有内容，报IndexError: pop from an empty deque
             actor, msg = self._msg_queue.popleft()
             try:
-                 actor.send(msg)    # 协程或者说生成器实现了send方法
+                # 协程或者说生成器实现了send方法
+                # 发送了以后，协程运行，协程内部又向队列里面添加元素。
+                actor.send(msg)
             except StopIteration:
                  pass
 
