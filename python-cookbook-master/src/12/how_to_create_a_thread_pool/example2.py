@@ -1,3 +1,6 @@
+#! /usr/bin/env python2
+# encoding: utf-8
+
 from socket import socket, AF_INET, SOCK_STREAM
 from threading import Thread
 from queue import Queue
@@ -16,6 +19,7 @@ def echo_client(q):
     print('Client closed connection')
     sock.close()
 
+
 def echo_server(addr, nworkers):
     print('Echo server running at', addr)
     # Launch the client workers
@@ -32,5 +36,6 @@ def echo_server(addr, nworkers):
     while True:
         client_sock, client_addr = sock.accept()
         q.put((client_sock, client_addr))
+
 
 echo_server(('',15000), 128)
