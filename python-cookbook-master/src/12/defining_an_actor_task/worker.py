@@ -1,6 +1,10 @@
+#! /usr/bin/env python
+# encoding: utf-8
+
 from actor import Actor
 from threading import Event
 
+# 通过result，使得两个线程之间得到同步
 class Result:
     def __init__(self):
         self._evt = Event()
@@ -25,6 +29,7 @@ class Worker(Actor):
             func, args, kwargs, r = self.recv()
             r.set_result(func(*args, **kwargs))
 
+
 # Example use
 if __name__ == '__main__':
     worker = Worker()
@@ -33,4 +38,3 @@ if __name__ == '__main__':
     print(r.result())
     worker.close()
     worker.join()
-

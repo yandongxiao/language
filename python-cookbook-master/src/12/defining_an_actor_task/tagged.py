@@ -1,11 +1,14 @@
+#! /usr/bin/env python3
+
 from actor import Actor
 
 class TaggedActor(Actor):
     def run(self):
         while True:
-             tag, *payload = self.recv()
-             getattr(self,"do_"+tag)(*payload)
-    
+            # 并非指针的意思，只是捕获剩余的变量到元组当中
+            tag, *payload = self.recv()
+            getattr(self,"do_"+tag)(*payload)
+
     # Methods correponding to different message tags
     def do_A(self, x):
         print("Running A", x)
