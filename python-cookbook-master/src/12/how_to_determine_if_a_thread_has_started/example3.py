@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 import threading
 import time
 
@@ -9,7 +12,8 @@ def worker(n, sema):
     print("Working", n)
 
 # Create some threads
-sema = threading.Semaphore(0)
+# 小于或者等于0的情况下，acquire操作会被阻塞
+sema = threading.Semaphore(1)
 nworkers = 10
 for n in range(nworkers):
     t = threading.Thread(target=worker, args=(n, sema,))
@@ -18,7 +22,7 @@ for n in range(nworkers):
 
 print('About to release first worker')
 time.sleep(5)
-sema.release()
+sema.release()  # 一次release允许一个线程开始工作
 time.sleep(1)
 print('About to release second worker')
 time.sleep(5)
