@@ -51,5 +51,3 @@ if __name__ == '__main__':
         exc.send('msg2')
 
     exc.send('msg3')
-
-
