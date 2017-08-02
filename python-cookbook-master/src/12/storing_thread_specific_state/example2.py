@@ -15,9 +15,10 @@ class LazyConnection:
             self.local.connections = []
         self.local.connections.append(sock)
         return sock
-                
+
     def __exit__(self, exc_ty, exc_val, tb):
         self.local.connections.pop().close()
+
 
 def test(conn):
     # Example use
@@ -44,6 +45,7 @@ def test(conn):
     print('resp1 got {} bytes'.format(len(resp1)))
     print('resp2 got {} bytes'.format(len(resp2)))
 
+
 if __name__ == '__main__':
 
     conn = LazyConnection(('www.python.org', 80))
@@ -56,5 +58,3 @@ if __name__ == '__main__':
     t1.join()
     t2.join()
     t3.join()
-
-
