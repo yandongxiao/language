@@ -1,3 +1,6 @@
+#! /usr/bin/env python3
+# encoding: utf-8
+
 from socket import AF_INET, SOCK_STREAM, socket
 from concurrent.futures import ThreadPoolExecutor
 
