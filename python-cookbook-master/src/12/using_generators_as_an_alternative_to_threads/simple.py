@@ -1,4 +1,7 @@
-# A very simple example of a coroutine/generator scheduler
+#! /usr/bin/env python
+# encoding: utf-8
+
+# 一个基于生成器实现了调度器和任务执行器的程序
 
 # Two simple generator functions
 def countdown(n):
