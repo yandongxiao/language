@@ -1,3 +1,6 @@
+# encoding: utf-8
+
+# popen是操作系统提供的与
 import subprocess
 
 # Some text to send
