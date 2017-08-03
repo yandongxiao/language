@@ -1,4 +1,6 @@
-# search.py
+#! /usr/bin/env python
+# encoding: utf-8
+
 '''
 Hypothetical command line tool for searching a collection of
 files for one or more text patterns.
@@ -12,7 +14,7 @@ parser.add_argument('-p', '--pat',metavar='pattern', required=True,
                     dest='patterns', action='append',
                     help='text pattern to search for')
 
-parser.add_argument('-v', dest='verbose', action='store_true', 
+parser.add_argument('-v', dest='verbose', action='store_true',
                     help='verbose mode')
 
 parser.add_argument('-o', dest='outfile', action='store',
