@@ -3,6 +3,11 @@
 写测试代码时，必须书写TestCase的子类，或者使用FunctionTestCase
 测试代码要与我们没有测试到的其他代码相互隔离（因为其它代码本身有错误的话会因此混淆测试结果）
 
+- Testing makes sure your code works properly under a given set of conditions
+- Testing allows one to ensure that changes to the code did not break existing functionality
+- Testing forces one to think about the code under unusual conditions, possibly revealing logical errors
+- Good testing requires modular, decoupled code, which is a hallmark of good system design
+
 1. python test_sum.py
 2. python -v test_sum.py
 3. python -m unittest discover -v test      # 注意v的位置
