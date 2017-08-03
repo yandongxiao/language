@@ -9,4 +9,9 @@ class JustForTest(unittest.TestCase):
         length = 10
         self.assertEqual(10, length)
 
+    # 检查异常的方法
+    def test_attrerror(self):
+        with self.assertRaises(NameError):
+            d = nihao
+
 unittest.main()
