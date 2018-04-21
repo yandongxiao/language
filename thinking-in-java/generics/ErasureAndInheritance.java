@@ -13,13 +13,11 @@ class Derived2 extends GenericBase {} // No warning
 // class Derived3 extends GenericBase<?> {}
 // Strange error:
 //   unexpected type found : ?
-//   required: class or interface without bounds	
+//   required: class or interface without bounds
 
 public class ErasureAndInheritance {
-  @SuppressWarnings("unchecked")
   public static void main(String[] args) {
-    Derived2 d2 = new Derived2();
-    Object obj = d2.get();
-    d2.set(obj); // Warning here!
+    Derived1<Integer> d2 = new Derived1<>();
+    Integer obj = d2.get();
   }
 } ///:~

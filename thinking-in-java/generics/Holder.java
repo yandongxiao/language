@@ -8,7 +8,7 @@ public class Holder<T> {
   public T get() { return value; }
   public boolean equals(Object obj) {
     return value.equals(obj);
-  }	
+  }
   public static void main(String[] args) {
     Holder<Apple> Apple = new Holder<Apple>(new Apple());
     Apple d = Apple.get();
