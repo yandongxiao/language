@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 class A:
-    def bar( self ):
+    def bar(self):
         print "bar"
 
 a = A()
