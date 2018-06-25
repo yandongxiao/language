@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from socket import *
 from time import ctime
 import sys
 from thread import *
 
-#是否可实现全双工通信,利用两个socket，两个线程，一个收一个发. 或者在一个socket的两个线程上进行收和发送
+# 是否可实现全双工通信,利用两个socket，两个线程，一个收一个发. 或者在一个socket的两个线程上进行收和发送
 
 def msg(msg):
 	print msg
