@@ -17,4 +17,10 @@ func main() {
 	} else {
 		fmt.Printf("%d is positive", num)
 	}
+
+	// non-bool val (type int) used as if condition)
+	val := 10
+	if val {
+		println("val")
+	}
 }
