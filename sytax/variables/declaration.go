@@ -38,7 +38,7 @@ func main() {
 	// 声明并定义
 	// 以下三种方式均可
 	var v11 float64 = 10
-	var v12 = 10
+	var v12 = 10 // Go will infer the type of initialized variables.
 	v13 := 10
 	fmt.Println(v11, v12, v13)
 }
