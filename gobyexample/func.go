@@ -22,6 +22,11 @@ func add1(a int, b int) int {
 	return a + b
 }
 
+// golang不支持重载
+//func add1(a int64, b int64) int64 {
+//	return a + b
+//}
+
 // 函数返回多个值
 func add2(a int, b int) (int, error) {
 	return a + b, nil
