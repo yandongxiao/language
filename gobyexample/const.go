@@ -18,5 +18,4 @@ func main() {
 	// 常量是没有类型的
 	fmt.Println(int64(d))
 	fmt.Println(math.Sin(d))
-
 }
