@@ -8,6 +8,8 @@ func main() {
 
 /* better than if */
 func Season(month int) string {
+	// switch 和 case 后面跟着的变量必须是相同类型
+	// case 后面跟着的可以是变量
 	switch month {
 	case 12, 1, 2:
 		return "Winter"
