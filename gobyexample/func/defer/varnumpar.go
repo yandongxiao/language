@@ -22,22 +22,3 @@ func Min(a ...int) int {
 	}
 	return min
 }
-
-/*
-The minimum is: 0
-The minimum in the array arr is: 1
-*/
-/*
-func Min(vals ...int) int {
-	if len(vals) == 0 {
-		return 0
-	}
-	min = vals[0]
-	for _, val := range vals {
-		if val < min {
-			min = val
-		}
-	}
-	return min
-}
-*/
