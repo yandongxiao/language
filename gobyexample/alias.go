@@ -1,5 +1,6 @@
 package main
 
+// import alias
 import fm "fmt"
 
 func main() {
