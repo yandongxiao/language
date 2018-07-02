@@ -1,30 +1,26 @@
 package main
 
-import "os"
-import "fmt"
-import "io"
+import (
+	"fmt"
+	"io"
+	"os"
+	"strings"
+)
 
-func errCheck(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
-
+// 判断io.Copy是否读取完毕的方法是判断n是否等于0
+// Because Copy is defined to read from src until EOF, it does not treat an EOF from Read as an error to be reported.
+// Copy可以拷贝的大小是int64!!
 func main() {
-	var src *os.File
-	var dest *os.File
-	var err error
+	r := strings.NewReader("some io.Reader stream to be read\n")
+	if n, err := io.Copy(os.Stdout, r); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("read: ", n)
+	}
 
-	src, err = os.Open("/tmp/data")
-	errCheck(err)
-	defer src.Close()
-
-	dest, err = os.Create("/tmp/data.cp")
-	errCheck(err)
-	defer dest.Close()
-
-	size, err := io.Copy(dest, src)
-	errCheck(err)
-	fmt.Println("size =", size)
-
+	if n, err := io.Copy(os.Stdout, r); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("read: ", n)
+	}
 }

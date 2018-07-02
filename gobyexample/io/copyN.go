@@ -23,8 +23,14 @@ func main() {
 	errCheck(err)
 	defer dest.Close()
 
-	size, err := io.CopyN(dest, src, 100) /* if file length < 100, err EOF */
-	errCheck(err)
-	fmt.Println("size =", size)
-
+	for {
+		// CopyN copies n bytes (or until an error) from src to dst. It returns the
+		//	number of bytes copied and the earliest error encountered while copying.)
+		// 错误返回时，size个拷贝还是有效的.
+		// if 100 > file size, 返回EOF; else size==100 and err == nil
+		// 假设文件大小为10， 每次copyN调用会拷贝5个字节，那么panic是发生在第三次调用.
+		size, err := io.CopyN(dest, src, 5)
+		errCheck(err)
+		fmt.Println("size =", size)
+	}
 }
