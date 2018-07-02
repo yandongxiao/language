@@ -21,6 +21,11 @@ type argError struct {
 	prob string
 }
 
+// error的定义如下：
+// type error interface {
+//		Error() string
+// }
+// 根据golang的原则，任何实现了Error方法的类型都实现了error接口
 func (err *argError) Error() string {
 	return err.prob
 }
@@ -40,12 +45,10 @@ func main() {
 		} else {
 			fmt.Printf("function succeed to work:%v \n", v)
 		}
-		// undefined: v
-		// println(v)
 	}
 
 	if _, err := f2(42); err != nil {
-		ae := err.(*argError)
+		ae := err.(*argError) // type assertion
 		fmt.Println(ae)
 	}
 	// 如何放置type assertion出错时导致程序崩溃
