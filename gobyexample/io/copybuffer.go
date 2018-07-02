@@ -4,6 +4,8 @@ import "os"
 import "fmt"
 import "io"
 
+// CopyBuffer is identical to Copy except that it stages through the provided buffer (if one is required) rather than allocating a temporary one.
+// If buf is nil, one is allocated; otherwise if it has zero length, CopyBuffer panics.)
 func errCheck(err error) {
 	if err != nil {
 		panic(err)
@@ -23,7 +25,8 @@ func main() {
 	errCheck(err)
 	defer dest.Close()
 
-	size, err := io.CopyBuffer(dest, src, nil)
+	buffer := make([]byte, 1)                     // 注意，buffer只是用来缓存读的数据，最后还是要写到dest上的
+	size, err := io.CopyBuffer(dest, src, buffer) // 等价于Copy
 	errCheck(err)
 	fmt.Println("size =", size)
 
