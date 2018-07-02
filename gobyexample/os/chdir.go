@@ -16,12 +16,13 @@ func main() {
 
 	if err = file.Chdir(); err != nil {
 		fmt.Println(err)
+		return
+	}
+
+	if file, err = os.Open("data2"); err != nil { /* not a abs path */
+		fmt.Println(err)
 	} else {
-		if file, err = os.Open("data2"); err != nil { /* not a abs path */
-			fmt.Println(err)
-		} else {
-			fmt.Println("use a relative path to open")
-		}
+		fmt.Println("use a relative path to open")
 	}
 	defer file.Close()
 }
