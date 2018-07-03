@@ -12,6 +12,7 @@ func errCheck(err error) {
 	}
 }
 
+// 关于Read和Write方法，参见README
 func main() {
 	src, err := os.Open("/tmp/data")
 	errCheck(err)

@@ -1,21 +1,23 @@
 package main
 
-import "fmt"
-import "net/http"
-import "io/ioutil"
+import (
+	"fmt"
+	"io/ioutil"
+	"strings"
+)
 
 func errcheck(err error) {
 	if err != nil {
 		fmt.Println(err)
 	}
 }
+
 func main() {
-	resp, err := http.Get("http://www.baidu.com")
-	errcheck(err)
-	defer resp.Body.Close()
+	reader := strings.NewReader("hello world")
 
-	body, err := ioutil.ReadAll(resp.Body)
+	// ReadAll reads from r until an error or EOF and returns the data it read.
+	// A successful call returns err == nil, not err == EOF.
+	data, err := ioutil.ReadAll(reader)
 	errcheck(err)
-
-	fmt.Println(string(body))
+	fmt.Println(string(data))
 }
