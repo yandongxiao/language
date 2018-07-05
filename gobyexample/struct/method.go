@@ -36,7 +36,7 @@ func main() {
 	// or to allow the method to mutate the receiving struct.
 	p.setName1("value")
 	fmt.Println(p)
-	(&p).setName1("value") // 不起作用
+	(&p).setName1("value") // 不起作用。method本质上是函数，receiver也是通过参数的形式传递的!!
 	fmt.Println(p)
 	p.setName2("pointer")
 	fmt.Println(p)
