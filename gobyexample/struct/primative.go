@@ -1,4 +1,3 @@
-// stack_struct.go
 package main
 
 import (
@@ -7,10 +6,10 @@ import (
 )
 
 const LIMIT = 4
-type Stack struct {
-	ix	   int		// first free position, so data[ix] == 0
-	data   [LIMIT]int
-}
+
+// golang比面向对象类的语言更加强大，它可以为任何类型添加新的方法，包括内置类型
+// Stack 类型的对象可以作为rang的参数，例如for ix, v := range st
+type Stack [LIMIT]int
 
 func main() {
 	st1 := new(Stack)
@@ -37,23 +36,33 @@ func main() {
 	fmt.Printf("%v\n", st1)
 }
 
+// put value on first position which contains 0, starting from bottom
 func (st *Stack) Push(n int) {
-	if (st.ix + 1 > LIMIT) {
-		return	// stack is full!
+	for ix, v := range st {
+		if v == 0 {
+			st[ix] = n
+			break
+		}
 	}
-	st.data[st.ix] = n
-	st.ix++
 }
 
+// take value from first position which contains !=0, starting from top
 func (st *Stack) Pop() int {
-	st.ix--
-	return st.data[st.ix]
+	v := 0
+	for ix := len(st) - 1; ix >= 0; ix-- {
+		if v = st[ix]; v != 0 {
+			st[ix] = 0
+			return v
+		}
+	}
+	return 0
 }
 
+// 注意不是ToString
 func (st Stack) String() string {
 	str := ""
-	for ix:=0; ix<st.ix; ix++ {
-		str += "[" + strconv.Itoa(ix) + ":" + strconv.Itoa(st.data[ix]) + "] "
+	for ix, v := range st {
+		str += "[" + strconv.Itoa(ix) + ":" + strconv.Itoa(v) + "] "
 	}
 	return str
 }

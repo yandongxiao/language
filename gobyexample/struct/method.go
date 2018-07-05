@@ -7,7 +7,8 @@ type Person struct {
 	age  int
 }
 
-// golang不允许有方法名重载
+// golang不允许有方法名重载，但是不同的类型可以有同名的方法
+// 类型定义和方法定义无需在同一个文件内，只需要在同一个package内，即可
 func (p Person) getName1() string {
 	return "object"
 }
