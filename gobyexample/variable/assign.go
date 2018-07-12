@@ -11,7 +11,7 @@ func main() {
 	a, _, c = 1, false, "helloworld"
 	fmt.Println(a, b, c)
 
-	// 左右两边的值的个数应该相等
+	// 左右两边的值的个数必须相等
 	//a = 1, 2
 	//fmt.Println(a)
 }
