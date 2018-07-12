@@ -12,6 +12,7 @@ func test1() {
 func test2() {
 	m := 10
 	// 在下面的block内，重新定义了m和n，所以上面的m变量被隐藏了
+	// structure level
 	if m, n := 20, 30; n == 30 {
 		fmt.Println(m, n)
 	}

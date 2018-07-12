@@ -10,7 +10,7 @@ func zeroptr(v *int) {
 	*v = 0
 }
 
-// type *[]int does not support indexing]
+// type *[]int does not support indexing
 // 引用类型的变量本身就是指针，所以不支持*[]int
 func zeroArray(arr *[3]int) {
 	for i := range *arr {
