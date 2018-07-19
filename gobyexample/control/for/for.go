@@ -1,3 +1,4 @@
+// for有四种形式, 并且是遍历的唯一方式
 package main
 
 import "fmt"
@@ -18,5 +19,9 @@ func main() {
 	for i < 10 {
 		fmt.Printf("%d, ", i)
 		i++
+	}
+
+	for i, v := range []int{1, 2, 3} {
+		println(i, v)
 	}
 }
