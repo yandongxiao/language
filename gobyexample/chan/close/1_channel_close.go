@@ -9,7 +9,7 @@ func main() {
 	chMsg <- "hello"
 	chMsg <- "world"
 
-	// 发送close消息
+	// 根本没有机会执行到下面的代码
 	// The close built-in function closes a channel, which must be either bidirectional or send-only. 说明接收端是没有权利close一个chan的
 	// any receive from c will succeed without blocking, returning the zero value for the channel element
 	close(chMsg)

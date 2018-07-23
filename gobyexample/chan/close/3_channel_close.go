@@ -22,6 +22,8 @@ func main() {
 	for i := 0; i < 3; i++ {
 		chMsg <- string(i)
 	}
+
+	// 如果不执行close操作，那么主协程因为receive chEnd而阻塞，而另一个协程也因等待receive chMsg而阻塞，死锁
 	close(chMsg)
 
 	<-chEnd
