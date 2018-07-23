@@ -19,5 +19,6 @@ func bar() {
 }
 
 func main() {
+	foo()
 	bar()
 }

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func Max(nums ...int) (max int, err error) {
-	fmt.Printf("type=%T\n", nums)
+	fmt.Printf("type=%T\n", nums) // nums的类型是slice
 	if len(nums) == 0 {
 		return -1, fmt.Errorf("%s", "empty array")
 	}
@@ -14,7 +14,7 @@ func Max(nums ...int) (max int, err error) {
 			max = e
 		}
 	}
-	return
+	return // 这个是必须的
 }
 
 func main() {
