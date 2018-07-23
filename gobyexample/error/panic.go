@@ -4,8 +4,14 @@ import "fmt"
 
 func main() {
 	defer func() {
-		// r is an empty interface
-		if r := recover(); r != nil {
+		// The recover built-in function allows a program to manage behavior of a panicking goroutine.
+		// Executing a call to recover inside a **deferred** function
+		// stops the panicking sequence by restoring normal execution and retrieves the error value passed to the call of panic.
+		//
+		// 返回值为nil的情况
+		// If recover is called outside the deferred function it will not stop a panicking sequence. In this case, or when the goroutine is not panicking, or if the argument supplied to panic was nil, recover returns nil
+		// Thus the return value from recover reports whether the goroutine is panicking.
+		if r := recover(); r != nil { // r is an empty interface
 			fmt.Println(r)
 		}
 	}()
