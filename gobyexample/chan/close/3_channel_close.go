@@ -6,11 +6,12 @@ func main() {
 
 	go func() {
 		for {
+
+			// It will also set ok to false for a closed channel
 			msg, more := <-chMsg
 			if more {
-				println("reveive message", msg)
+				println("receive message", msg)
 			} else {
-				// receiver会单独收到一条消息，表示已经收到了所有的消息
 				println("have received all messages")
 				break
 			}
@@ -21,7 +22,7 @@ func main() {
 	for i := 0; i < 3; i++ {
 		chMsg <- string(i)
 	}
-	// 发送close消息
 	close(chMsg)
+
 	<-chEnd
 }
