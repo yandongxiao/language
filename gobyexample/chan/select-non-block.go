@@ -18,5 +18,4 @@ func main() {
 	default:
 		fmt.Println("failed to receive")
 	}
-
 }
