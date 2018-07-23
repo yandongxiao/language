@@ -6,8 +6,7 @@ func main() {
 
 	go func() {
 		for {
-
-			// It will also set ok to false for a closed channel
+			// It will also set more to false for a closed channel
 			msg, more := <-chMsg
 			if more {
 				println("receive message", msg)
