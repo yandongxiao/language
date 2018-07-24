@@ -14,6 +14,7 @@ type geometry interface {
 type rect struct {
 	width, height float64
 }
+
 type circle struct {
 	radius float64
 }
@@ -53,9 +54,7 @@ func main() {
 	c := circle{radius: 5}
 
 	// The `circle` and `rect` struct types both
-	// implement the `geometry` interface so we can use
-	// instances of
-	// these structs as arguments to `measure`.
+	// implement the `geometry` interface so we can use instances of these structs as arguments to `measure`.
 	// NOTE：结构体的指针类型和值类型是两个完全不同的类型，只是两种类型都可以通过.的方式来访问成员
 	measure(&r)
 	measure(c)

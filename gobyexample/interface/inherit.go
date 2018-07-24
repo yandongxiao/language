@@ -13,6 +13,20 @@ type Interface3 interface {
 	Interface2
 }
 
+type INT int
+
+func (a INT) func1() {
+	println(a + 1)
+}
+
+func (a INT) func2() {
+	println(a + 2)
+}
+
 func main() {
-	println("helloworld")
+	v := 10
+	ai := INT(v)
+	var i Interface3 = ai
+	i.func1()
+	i.func2()
 }
