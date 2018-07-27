@@ -14,7 +14,6 @@ type Engine interface {
 // Golang规定：只要实现了接口定义的方法，即认为该类型实现了该interface。没有implements或者extends等关键字
 // 匿名内部类型 + 接口 即可实现多态！
 // 内部类的本质是composite
-// 方法的本质是函数，类对象作为参数传递。
 type Car struct {
 	wheelCount int
 	Engine

@@ -1,0 +1,1 @@
+Structs in Go and the data they contain, even when a struct contains other structs, form a continuous block in memory: this gives a huge performance benefit.

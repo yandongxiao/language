@@ -8,7 +8,7 @@ type Base struct{}
 func (Base) Magic() { fmt.Print("base magic ") }
 
 func (b Base) MoreMagic() {
-	b.Magic() //must call Magic
+	b.Magic() // must call Magic
 	b.Magic()
 }
 
