@@ -13,10 +13,10 @@ func send() {
 
 	for i := 0; i < 2; i++ {
 		select {
-		case msg1 := <-ch1: // 先收到first
+		case msg1 := <-ch1: // 一定是先收到first
 			println(msg1)
 		case msg2 := <-ch2:
-			println(msg2) //undefined: msg1
+			println(msg2) // undefined: msg1
 		}
 	}
 }
@@ -34,7 +34,7 @@ func recv() {
 		select {
 		case ch2 <- "world":
 			println("send ch2")
-		case ch1 <- "hello": // 先发送first
+		case ch1 <- "hello": // 一定是先发送first
 			println("send ch1")
 		}
 	}
