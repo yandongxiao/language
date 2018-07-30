@@ -3,12 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	// 两个有类型信息的变量无法直接进行计算
-	// invalid operation: num1 + num2 (mismatched types int and float64))
-	// var num1 int = 10
-	// var num2 float64 = 10
-	// println(num1 + num2)
-
 	// itoa
 	// golang没有显示的enum关键字，使用const+iota进行模拟
 	// 1. 每次出现const关键字时，iota被重置为0
