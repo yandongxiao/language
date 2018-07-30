@@ -1,3 +1,7 @@
+// The convention in the Go libraries is that even when a package uses panic internally, a recover is done so that its external API still presents explicit error return values.
+// 1. always recover from panic in your package: no explicit panic() should be allowed to cross a package boundary
+// 2. return errors as error values to the callers of your package.
+
 package main
 
 import "fmt"
