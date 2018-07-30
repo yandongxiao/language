@@ -1,4 +1,6 @@
 // inheritance_car.go
+// When an anonymous type is embedded in a struct, the visible methods of that type are embedded as well.
+// embedded类型可以是struct，interface，alias type
 package main
 
 import (

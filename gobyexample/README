@@ -1,6 +1,0 @@
-1. 不同类型的变量之间是不能进行计算，即便是int32和int64之间
-2. 常量是无类型的, 变量一定是有类型的
-3. 字符串变量的内容是不能被修改的. 这个与python字符串的特性相同，可见，字符串变量应该是引用类型, 但因为是不可变类型，所以可以像使用值的方式使用它
-4. 匿名变量: _
-5. Variables declared without a corresponding initialization are zero-valued.
-4. 变量的内存模型：堆变量和栈变量
