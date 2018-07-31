@@ -28,5 +28,5 @@ func main() {
 		}
 	}()
 
-	time.Sleep(3e9)
+	time.Sleep(1e9)
 }
