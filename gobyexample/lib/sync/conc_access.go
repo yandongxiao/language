@@ -47,8 +47,3 @@ func main() {
 	fmt.Println("Salary changed:")
 	fmt.Println(bs)
 }
-/* Output:
-Person - name is: Smith Bill - salary is: 2500.50
-Salary changed:
-Person - name is: Smith Bill - salary is: 4000.25
-*/
