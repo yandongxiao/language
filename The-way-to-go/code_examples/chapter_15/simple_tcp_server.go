@@ -1,6 +1,6 @@
 /**
  * Simple multi-thread/multi-core TCP server.
- * 1. conn.Wriet如果只是写了部分数据，是否会产生error： 猜想应该是不会的
+ * 1. conn.Wriet如果只是写了部分数据，是否会产生error：猜想应该是不会的
  * 所以，如果只是写了部分数据，上层应用是要负责继续传递后续的数据
  * 在TCP层写应用的话就是存在上面这么个窘境，在http层利用net/http进行IO操作的时候就不存在这个问题
  *

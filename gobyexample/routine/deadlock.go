@@ -1,9 +1,11 @@
 // 协程没有成功捕获deadlock的问题
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func main() {
+func test() {
 	ch := make(chan int)
 	defer func() {
 		fmt.Println("----")
@@ -12,5 +14,9 @@ func main() {
 		}
 	}()
 	ch <- 1
-	println(<-ch)
+}
+
+func main() {
+	go test()
+	select {}
 }

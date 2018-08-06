@@ -33,6 +33,7 @@ func suck(ch1, ch2 chan int) {
 		select {
 		case v := <-ch1:
 			fmt.Printf("Received on channel 1: %d\n", v)
+			break // 针对的是select, break放在最后貌似是没什么用的
 		case v := <-ch2:
 			fmt.Printf("Received on channel 2: %d\n", v)
 		}
