@@ -8,17 +8,19 @@ import (
 	"expvar"
 	"flag"
 	"fmt"
-	"net/http"
 	"io"
 	"log"
+	"net/http"
 	"os"
 	"strconv"
 )
 
 // hello world, the web server
 var helloRequests = expvar.NewInt("hello-requests")
+
 // flags:
-var webroot = flag.String("root", "/home/user", "web root directory")
+var webroot = flag.String("root", "/tmp", "web root directory")
+
 // simple flag server
 var booleanflag = flag.Bool("boolean", true, "another flag for testing")
 
