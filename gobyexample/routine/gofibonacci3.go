@@ -36,7 +36,7 @@ func fib() <-chan int {
 func main() {
 	start := time.Now()
 	x := fib()
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 25; i++ {
 		fmt.Println(<-x)
 	}
 	end := time.Now()
