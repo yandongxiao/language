@@ -1,0 +1,47 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "My New Hugo Site"
+theme = "gohugoioTheme"
+
+######## GLOBAL ITEMS TO BE SHARED WITH THE HUGO SITES
+
+[[menu.global]]
+    name = "News"
+    weight = 1
+    identifier = "news"
+    url = "/news/"
+
+  [[menu.global]]
+    name = "Docs"
+    weight = 5
+    identifier = "docs"
+    url = "/documentation/"
+
+  [[menu.global]]
+    name = "Themes"
+    weight = 10
+    identifier = "themes"
+    url = "https://themes.gohugo.io/"
+
+  [[menu.global]]
+    name = "Showcase"
+    weight = 20
+    identifier = "showcase"
+    url = "/showcase/"
+
+  # Anything with a weight > 100 gets an external icon
+  [[menu.global]]
+    name = "Community"
+    weight = 150
+    icon = true
+    identifier = "community"
+    post = "external"
+    url = "https://discourse.gohugo.io/"
+
+
+  [[menu.global]]
+    name = "GitHub"
+    weight = 200
+    identifier = "github"
+    post = "external"
+    url = "https://github.com/gohugoio/hugo"
