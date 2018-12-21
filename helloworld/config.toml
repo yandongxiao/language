@@ -3,10 +3,18 @@ languageCode = "en-us"
 title = "My New Hugo Site"
 theme = "gohugoioTheme"
 
+[taxonomies]
+  category = "categories"
+
 #CUSTOM PARAMS
 [params]
     flex_box_interior_classes = "flex-auto w-100 w-40-l mr3 mb3 bg-white ba b--moon-gray nested-copy-line-height"
 
+[[menu.quicklinks]]
+    name = "Fundamentals"
+    weight = 1
+    identifier = "fundamentals"
+    url = "/tags/fundamentals/"
 
 ######## GLOBAL ITEMS TO BE SHARED WITH THE HUGO SITES
 
