@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-# 数据准备
-skus = np.genfromtxt("../scatter/example.csv", delimiter=",", skip_header=1)
-#df = pd.DataFrame({'id': skus[:,0], 'count': skus[:,1]})
-#print(df)
+# contains duplicate entries, cannot reshape
+# 说明数据不能包含相同的值
+df=pd.read_csv("./data.csv")
+data=df.pivot("year", "month", 'passengers')
 # 用 Seaborn 画热力图
-sns.heatmap(skus)
+sns.heatmap(data)
 plt.show()
 
